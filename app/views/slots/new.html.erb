@@ -1,0 +1,11 @@
+<h1>Slots#new</h1>
+<p>Find me in app/views/slots/new.html.erb</p>
+
+<%= form_with model: @slot, local: true do |f| %>
+  <%= f.number_field :max_num, required: true , min: 0%>
+  <%= f.date_field :date, required: true %>
+  <%= f.select :access_level, [['権限0', 0], ['権限1', 1], ['権限2', 2], ['権限3', 3]] %>
+  <%= f.select :power_switch, [['表示ON', 0], ['表示OFF', 1]] %>
+  <%= f.select :slot_purpose, [['08:00から10:00', 0], ['10:00から12:00', 1]] %>
+  <%= f.submit "確定"%>
+<% end %>
