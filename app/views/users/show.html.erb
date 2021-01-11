@@ -1,0 +1,18 @@
+<h1>Users#show</h1>
+<p>Find me in app/views/users/show.html.erb</p>
+
+<p>お名前：<%= @user.name%>さま</p>
+<p>御社名：<%= @user.company%></p>
+<p>メールアドレス：<%= @user.email%></p>
+<p>電話番号：<%= @user.phone%></p>
+
+===
+
+<p>登録を内容を変更する</p>
+<%= form_with model: @user, local: true, url: {action: 'update'}  do |f| %>
+  <p><%= f.text_field :name, value: @user.name %></p>
+  <p><%= f.text_field :company, value: @user.company %></p>
+  <p><%= f.text_field :email, value: @user.email %></p>
+  <p><%= f.text_field :phone, value: @user.phone %></p>
+<%= f.submit "確定"%>
+<% end %>

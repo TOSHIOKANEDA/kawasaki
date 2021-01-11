@@ -11,5 +11,6 @@
   <% end %>
   <p>卸す時：<%= booking.off_action %></p>
   <p>積む時：<%= booking.on_action %></p>
+  <p>このBookingを訂正する：<%= link_to '更新', edit_booking_path(booking.id), method: :get %> </p>
   ===
 <% end %>

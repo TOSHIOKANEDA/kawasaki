@@ -1,0 +1,8 @@
+<h1>Bookings#edit</h1>
+<p>Find me in app/views/bookings/edit.html.erb</p>
+
+<%= form_with model: @booking, local: true, url: {action: 'update'} do |f| %>
+
+<%= render partial: "new&edit_form", locals: { f: f } %>
+
+<% end %>

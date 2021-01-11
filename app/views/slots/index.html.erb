@@ -5,3 +5,4 @@
 <p><%= link_to "Slot登録", new_slot_path %></p>
 <p><%= link_to "Booking登録", new_booking_path %></p>
 <p><%= link_to "#{current_user.company}さんのBooking一覧", users_path(id: current_user.id) %></p>
+<p><%= link_to "#{current_user.company}さんの登録情報一覧", user_path(id: current_user.id) %></p>
