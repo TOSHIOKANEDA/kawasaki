@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :set_params, only: [:show, :index]
 
   def index
-    @bookings = @user.bookings
+    @bookings = Booking.where(user_id: @user.id)
   end
 
   def show
