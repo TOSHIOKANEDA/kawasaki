@@ -1,0 +1,13 @@
+<h1>Bookings#show</h1>
+<p>Find me in app/views/bookings/show.html.erb</p>
+  <p>おろしどり予約完了しました。</p>
+  <p><%= @booking.booking_code %></p>
+  <% if @booking.imp_cntr_num.present?%>
+  <p>空バン返却時のコンテナ番号；<%= @booking.imp_cntr_num %></p>
+  <% end %>
+  <% if @booking.exp_cntr_num.present?%>
+  <p>実入り搬入時のコンテナ番号：<%= @booking.exp_cntr_num %></p>
+  <% end %>
+  <p>卸す時：<%= @booking.off_action %></p>
+  <p>積む時：<%= @booking.on_action %></p>
+  <p>ありがとうございました</p>
