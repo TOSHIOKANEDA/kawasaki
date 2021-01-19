@@ -1,0 +1,8 @@
+<h1>Slots#edit</h1>
+<p>Find me in app/views/slots/edit.html.erb</p>
+
+<%= form_with model: @slot, local: true, url: {action: 'update'} do |f| %>
+
+<%= render partial: "new&edit_form", locals: { f: f } %>
+
+<% end %>
