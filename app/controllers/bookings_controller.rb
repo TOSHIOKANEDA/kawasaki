@@ -17,10 +17,12 @@ class BookingsController < ApplicationController
 
   def create
     @booking.booking_code = @booking.random_string
+    @booking.check_full_status
     if params[:back]
       p "OK！"
       render :new
-    elsif @booking.save
+    elsif @booking.check_full_status == 1
+      @booking.save
       redirect_to booking_path(@booking.id)
     else
       p "エラー！"

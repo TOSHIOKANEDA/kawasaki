@@ -10,4 +10,14 @@ class Booking < ApplicationRecord
     random_string = (0...6).map { a[rand(a.length)] }.join
   end
 
+  def check_full_status
+    bookings = Booking.where(slot_id: slot_id)
+    slot = Slot.find(slot_id)
+    if bookings.length < slot.max_num
+      check_full_status = 1
+    else
+      check_full_status = 0
+    end
+  end
+
 end

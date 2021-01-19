@@ -4,6 +4,7 @@ class SlotsController < ApplicationController
 
   def new
     @slot = Slot.new
+    @slots = Slot.all
   end
 
   def create
