@@ -7,6 +7,7 @@ class SlotsController < ApplicationController
   def new
     @slot = Slot.new
     @slots = Slot.all
+    @current_vol = 1
   end
 
   def create
@@ -35,6 +36,7 @@ class SlotsController < ApplicationController
   end
 
   def edit
+    @current_vol = Booking.where(slot_id: @slot.id).length
   end
 
   private

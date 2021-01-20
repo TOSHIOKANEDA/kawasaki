@@ -90,7 +90,7 @@ https://qiita.com/Tatsu88/items/ab5d4927bbfade959c1c
 ===
 
 開発メモ
-full_status: 1: いっぱい、0: 余裕あり
+full_status: 0: 余裕なし、1:余裕あり
 
 次の開発
 削除機能（full statusの設定も追加）
