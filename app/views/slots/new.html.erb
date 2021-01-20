@@ -11,9 +11,7 @@
 <p><%= slot.date%></p>
 <p><%= slot.access_level%></p>
 <p><%= slot.power_switch%></p>
-<% bookings_num = Booking.where(slot_id: slot.id).length%>
-<% num = slot.max_num - bookings_num %>
-残<%= num %>本
+残<%= available_num slot %>本
 <p><%= slot.slot_purpose%></p>
 <%= link_to '更新', edit_slot_path(slot.id), method: :get %>
 <% end %>

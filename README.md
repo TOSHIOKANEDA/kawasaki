@@ -86,3 +86,11 @@ https://qiita.com/Tatsu88/items/7030fd72d0ba714917fe
 
 Capistranoの設定
 https://qiita.com/Tatsu88/items/ab5d4927bbfade959c1c
+
+===
+
+開発メモ
+full_status: 1: いっぱい、0: 余裕あり
+
+次の開発
+削除機能（full statusの設定も追加）

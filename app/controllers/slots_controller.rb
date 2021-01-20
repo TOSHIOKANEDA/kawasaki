@@ -23,6 +23,7 @@ class SlotsController < ApplicationController
   def update
     if @slot.update(slot_params)
       p "無事保存"
+      update_full_status(@slot.id)
       redirect_to root_path
     else
       p "失敗"

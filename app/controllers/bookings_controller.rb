@@ -1,6 +1,7 @@
 class BookingsController < ApplicationController
   before_action :set_params, only: [:confirm, :create]
   before_action :find_params, only: [:edit, :show, :update]
+  before_action :find_available_slots, only: [:full_booking, :new, :create]
 
   def index
   end
@@ -17,12 +18,14 @@ class BookingsController < ApplicationController
 
   def create
     @booking.booking_code = @booking.random_string
+#ここでfull_statusを確認させる(full_statusの0と1再度確認)
     @booking.check_full_status
     if params[:back]
       p "OK！"
       render :new
     elsif @booking.check_full_status == 1
       @booking.save
+      update_full_status(@booking.slot_id)
       redirect_to booking_path(@booking.id)
     else
       p "エラー！"
@@ -64,4 +67,13 @@ class BookingsController < ApplicationController
   def find_params
     @booking = Booking.find(params[:id])
   end
+
+  def full_booking
+    redirect_to root_path if @slots.blank?
+  end
+
+  def find_available_slots
+    @slots = Slot.where(full_status: 0)
+  end
+
 end

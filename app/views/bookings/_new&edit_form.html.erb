@@ -10,7 +10,7 @@
     
   <div class="field">
     <%= f.label :slot_id %>
-    <%= f.collection_select(:slot_id, Slot.all, :id, :date, prompt: "日付を選択してください") %>
+    <%= f.collection_select(:slot_id, @slots, :id, :date, prompt: "日付を選択してください") %>
   </div>
 
   <div class="field">
