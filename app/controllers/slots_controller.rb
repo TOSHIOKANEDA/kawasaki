@@ -1,5 +1,5 @@
 class SlotsController < ApplicationController
-  before_action :find_params, only: [:edit, :update]
+  before_action :find_params, only: [:edit, :update, :destroy]
 
   def index
   end
@@ -25,6 +25,16 @@ class SlotsController < ApplicationController
     if @slot.update(slot_params)
       p "無事保存"
       update_full_status(@slot.id)
+      redirect_to new_slot_path
+    else
+      p "失敗"
+      redirect_to root_path
+    end
+  end
+
+  def destroy
+    if @slot.destroy
+      p "無事削除"
       redirect_to root_path
     else
       p "失敗"
@@ -32,11 +42,19 @@ class SlotsController < ApplicationController
     end
   end
 
-  def destroy
-  end
-
   def edit
     @current_vol = Booking.where(slot_id: @slot.id).length
+  end
+
+  def power
+    if params[:turn] == "off"
+      Slot.update_all(power_switch: 1)
+    elsif params[:turn] == "on"
+      Slot.update_all(power_switch: 0)
+    else
+      p "失敗"
+      redirect_to root_path
+    end
   end
 
   private

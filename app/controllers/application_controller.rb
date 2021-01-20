@@ -10,9 +10,9 @@ class ApplicationController < ActionController::Base
     slot = Slot.find(id)
     bookings = Booking.where(slot_id: slot)
     if slot.max_num - bookings.length <= 0
-      slot.update(full_status: 0)
-    elsif slot.max_num - bookings.length > 0
       slot.update(full_status: 1)
+    elsif slot.max_num - bookings.length > 0
+      slot.update(full_status: 0)
     end
   end
   

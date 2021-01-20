@@ -15,5 +15,6 @@
 残<%= available_num slot %>本
 <p><%= slot.slot_purpose%></p>
 <%= link_to '更新', edit_slot_path(slot.id), method: :get %>
+<%= link_to '削除', slot_path(slot.id), method: :delete %>
 <% end %>
 <% end %>

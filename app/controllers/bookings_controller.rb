@@ -30,7 +30,7 @@ class BookingsController < ApplicationController
     if params[:back]
       p "OK！"
       render :new
-    elsif @booking.slot.full_status == 1
+    elsif @booking.slot.full_status == 0
       @booking.save
       update_full_status(@booking.slot_id)
       redirect_to booking_path(@booking.id)
@@ -80,7 +80,7 @@ class BookingsController < ApplicationController
   end
 
   def find_available_slots
-    @slots = Slot.where(full_status: 1)
+    @slots = Slot.where(full_status: 0)
     unless @slots.present?
       redirect_to root_path
       p "もう予約できる枠がありません"

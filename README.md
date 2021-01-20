@@ -90,7 +90,9 @@ https://qiita.com/Tatsu88/items/ab5d4927bbfade959c1c
 ===
 
 開発メモ
-full_status: 0: 余裕なし、1:余裕あり
+1=問題あり、0=問題なし
+full_status: 0:余裕あり, 1:余裕なし、
+power_switch: 0:電源on、1:電源off
 
 次の開発
 削除機能（full statusの設定も追加）

@@ -17,6 +17,7 @@ Rails.application.routes.draw do
       post :confirm
     end
   end
+  put "power", to:  "slots#power"
   
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

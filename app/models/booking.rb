@@ -1,6 +1,6 @@
 class Booking < ApplicationRecord
-  belongs_to :slot, optional: true
-  belongs_to :user, optional: true
+  belongs_to :slot
+  belongs_to :user
 
   enum off_action: {"空バン返却":0, "実入り搬入":1}
   enum on_action: {"実入りPICK":0, "空バンPICK":1}
@@ -8,16 +8,6 @@ class Booking < ApplicationRecord
   def random_string(length = 5)
     a = [('A'..'Z'), ('0'..'9')].map { |i| i.to_a }.flatten
     random_string = (0...6).map { a[rand(a.length)] }.join
-  end
-
-  def check_full_status
-    bookings = Booking.where(slot_id: slot_id)
-    slot = Slot.find(slot_id)
-    if bookings.length < slot.max_num
-      check_full_status = 1
-    else
-      check_full_status = 0
-    end
   end
 
 end

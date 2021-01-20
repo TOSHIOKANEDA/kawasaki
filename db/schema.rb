@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 2021_01_10_134049) do
     t.date "date", null: false
     t.integer "access_level", default: 0
     t.integer "power_switch", default: 0
-    t.integer "full_status", default: 1
+    t.integer "full_status", default: 0
     t.integer "slot_purpose", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
