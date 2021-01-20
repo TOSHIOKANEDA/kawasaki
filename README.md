@@ -92,7 +92,12 @@ https://qiita.com/Tatsu88/items/ab5d4927bbfade959c1c
 開発メモ
 1=問題あり、0=問題なし
 full_status: 0:余裕あり, 1:余裕なし、
-power_switch: 0:電源on、1:電源off
+power_switch: 0:電源on, 1:電源off
 
 次の開発
-削除機能（full statusの設定も追加）
+USER権限の設定
+Slotを複製する機能（slot_id以外）
+Reference: 
+https://www.tom08.net/entry/2017/02/06/224127
+https://www.lanches.co.jp/blog/3327
+
