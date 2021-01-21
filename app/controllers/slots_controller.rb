@@ -2,6 +2,7 @@ class SlotsController < ApplicationController
   before_action :find_params, only: [:edit, :update, :destroy]
 
   def index
+    @slots = Slot.all
   end
 
   def new
@@ -55,6 +56,12 @@ class SlotsController < ApplicationController
       p "失敗"
       redirect_to root_path
     end
+  end
+
+  def update_date_all
+    original_slots =  params[:slots].reject!{ |key, value| value == "0" }
+    @slots = Slot.where(id: original_slots.keys).update_all(date: params[:to_date]) if original_slots.present?
+    redirect_to slots_path
   end
 
   private

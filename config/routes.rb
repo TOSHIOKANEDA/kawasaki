@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'slots#index'
+  root 'bookings#index'
   devise_for :users, controllers: {
     registrations: 'users/registrations',
     sessions: 'users/sessions'
@@ -18,7 +18,7 @@ Rails.application.routes.draw do
     end
   end
   put "power", to:  "slots#power"
-  
+  patch "update_date_all", to:  "slots#update_date_all"  
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

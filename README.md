@@ -101,3 +101,5 @@ Reference:
 https://www.tom08.net/entry/2017/02/06/224127
 https://www.lanches.co.jp/blog/3327
 
+Slotの中身を変更する方法は完成。あとはslotをコピーさせる記述をする。
+
