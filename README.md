@@ -77,6 +77,10 @@ MyDriver
 ＜完璧＞
 https://qiita.com/gyu_outputs/items/b123ef229842d857ff39
 
+<mysql>
+https://qiita.com/riekure/items/d667c707e8ca496f88e6
+https://qiita.com/ksugawara61/items/336ffab798e05cae4afc
+
 ＜下は参考程度＞
 
 https://bagelee.com/programming/ruby-on-rails/capistrano/

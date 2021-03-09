@@ -3,6 +3,7 @@
 
 
 <p><%= link_to "User登録", new_user_registration_path %></p>
+<p><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></p>
 <p><%= link_to "Slot登録", new_slot_path %></p>
 <p><%= link_to "電源ON", power_path(turn: "on"), method: :put %></p>
 <p><%= link_to "電源OFF", power_path(turn: "off"), method: :put %></p>
