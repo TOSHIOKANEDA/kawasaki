@@ -100,10 +100,5 @@ power_switch: 0:電源on, 1:電源off
 
 次の開発
 USER権限の設定
-Slotを複製する機能（slot_id以外）
-Reference: 
-https://www.tom08.net/entry/2017/02/06/224127
-https://www.lanches.co.jp/blog/3327
 
-Slotの中身を変更する方法は完成。あとはslotをコピーさせる記述をする。
-
+本番環境
