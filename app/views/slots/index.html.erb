@@ -14,7 +14,8 @@
       <% @slots.each do |slot| %>
         <tr>
           <td><%= f.check_box "slots[#{slot.id}]"%></td>
-          <td><%= slot.slot_purpose %></td>
+          <td><%= slot.start_time %></td>
+          <td><%= slot.end_time %></td>
           <td><%= slot.date %></td>
         </tr>
       <% end %>

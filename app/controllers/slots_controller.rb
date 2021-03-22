@@ -64,10 +64,17 @@ class SlotsController < ApplicationController
     redirect_to slots_path
   end
 
+  def copy
+    original_slot = Slot.find(params[:id])
+    @slot = original_slot.deep_clone
+    @slot.save
+    redirect_to new_slot_path if @slot.save
+  end
+
   private
 
   def slot_params
-    params.require(:slot).permit(:max_num, :date, :access_level, :power_switch, :full_status, :slot_purpose)
+    params.require(:slot).permit(:max_num, :date, :access_level, :power_switch, :full_status, :start_time, :end_time)
   end
 
   def find_params

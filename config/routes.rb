@@ -18,7 +18,6 @@ Rails.application.routes.draw do
     end
   end
   put "power", to:  "slots#power"
-  patch "update_date_all", to:  "slots#update_date_all"  
-
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  get "copy/:id", to:  "slots#copy", as: 'copy_slot'
+  patch "update_date_all", to:  "slots#update_date_all" 
 end

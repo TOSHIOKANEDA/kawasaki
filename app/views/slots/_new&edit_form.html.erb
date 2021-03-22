@@ -1,6 +1,7 @@
   <%= f.number_field :max_num, required: true , min: @current_vol%>
   <%= f.date_field :date, required: true %>
+  <%= f.select :start_time, options_for_select(Slot.time_lists.keys), required: true %>から
+  <%= f.select :end_time, options_for_select(Slot.time_lists.keys), required: true %>まで
   <%= f.select :access_level, options_for_select(Slot.access_levels.keys), required: true%>
   <%= f.select :power_switch, options_for_select(Slot.power_switches.keys), required: true %>
-  <%= f.select :slot_purpose, options_for_select(Slot.slot_purposes.keys), required: true %>
   <%= f.submit "確定" %>

@@ -13,8 +13,10 @@
 <p><%= slot.access_level%></p>
 <p><%= slot.power_switch%></p>
 残<%= available_num slot %>本
-<p><%= slot.slot_purpose%></p>
+<p><%= slot.start_time%></p>
+<p><%= slot.end_time%></p>
 <%= link_to '更新', edit_slot_path(slot.id), method: :get %>
 <%= link_to '削除', slot_path(slot.id), method: :delete %>
+<%= link_to 'コピー', copy_slot_path(slot.id), method: :get %>
 <% end %>
 <% end %>
