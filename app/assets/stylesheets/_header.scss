@@ -1,4 +1,5 @@
 #header {
+  height: 100px;
   margin: 0;
   padding: 10px 0;
   background-color: #fff;
@@ -15,12 +16,20 @@
 
 
 
+
 .container {
   width: 80%;
   padding-right: 15px;
   padding-left: 15px;
   margin-right: auto;
   margin-left: auto;
+  p {
+      display: block;
+      margin-block-start: 1em;
+      margin-block-end: 1em;
+      margin-inline-start: 0px;
+      margin-inline-end: 0px;
+  }
   ul.top-nav {
     float: right;
     margin-top: 8px;
@@ -30,7 +39,6 @@
     white-space: nowrap;
     li {
       display: inline-block;
-      position: relative;
       a {
         padding: 6px 10px;
         color: #777;
@@ -41,26 +49,18 @@
   }
 }
 
-.main-menu {
-  background-color: #006687;
-  .navbar {
-    position: relative;
-    min-height: 50px;
-    margin-bottom: 20px;
-    border: 1px solid transparent;
-    .navbar-main {
-      margin-bottom: 0;
-      background-color: #0e5077;
-      border: 0;
-      min-height: 38px;
-      font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-      font-size: 15px;
-      .container {
-        padding-right: 15px;
-        padding-left: 15px;
-        margin-right: auto;
-        margin-left: auto;
-      }
+.header-nav {
+  .navbar-main {
+    background-color: #0e5077;
+    border: 0;
+    min-height: 38px;
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 15px;
+    li {
+      float: right;
+      color: #fff;
+      list-style: none;
+      padding: 15px 20px;
     }
   }
 }
