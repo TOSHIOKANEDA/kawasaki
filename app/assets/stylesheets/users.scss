@@ -49,6 +49,11 @@
     .pass_field {
       @extend %field;
     }
+
+    .plain_field {
+      @extend %field;
+      margin-bottom: 15px;
+    }
     .submit_button {
       margin-top: 45px;
       width: 370px;
@@ -63,14 +68,27 @@
       cursor: pointer;
       margin-bottom: 20px;
     }
-    
   }
-
-
 }
 
+.login_shared_msg {
+  font-size: 1.2em;
+  padding: 1em 0;
+  text-align: left;
+  a {
+    color: #8c8c8c;
+    text-decoration: none;
+    transition: border-color 0.3s;
+  }
+}
 
-/*input style*/
+.login_caution_msg {
+  color: #8c8c8c;
+  font-size: 0.9em;
+  margin-left: 10em;
+  text-align: center;
+}
+
 
 
 
