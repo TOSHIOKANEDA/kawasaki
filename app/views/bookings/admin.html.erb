@@ -1,0 +1,8 @@
+<%= render "layouts/header"%>
+
+
+<p><%= link_to "Booking管理", new_slot_path %></p>
+<p><%= link_to "電源ON", power_slots_path(turn: "on"), method: :put %></p>
+<p><%= link_to "電源OFF", power_slots_path(turn: "off"), method: :put %></p>
+
+<%= render "layouts/footer"%>

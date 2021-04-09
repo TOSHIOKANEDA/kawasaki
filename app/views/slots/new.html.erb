@@ -1,22 +1,39 @@
-<h1>Slots#new</h1>
-<p>Find me in app/views/slots/new.html.erb</p>
+<%= render "layouts/header"%>
 
 <%= form_with model: @slot, local: true do |f| %>
 <%= render partial: "new&edit_form", locals: { f: f } %>
 <% end %>
+<%= link_to 'Slot日にち変更', slots_path, method: :get %>
+<table>
+  <% if @slots.present?%>
+  今あるslot
+  <tr>
+  <th>表示</th>
+  <td>日にち</td>
+  <td>権限</td>
+  <td>受け入れ台数</td>
+  <td>残り台数</td>
+  <td>開始時間</td>
+  <td>終了時間</td>
+  <td>更新</td>
+  <td>削除</td>
+  <td>コピー</td>
+  </tr>
+  <% @slots.each do |slot| %>
+    <tr>
+      <th><%= slot.power_switch%></th>
+      <td><%= slot.date%></td>
+      <td><%= slot.access_level%></td>
+      <td><%= slot.max_num%></td>
+      <td><%= available_num slot %></td>
+      <td><%= slot.start_time%></td>
+      <td><%= slot.end_time%></td>
+      <td><%= link_to '更新', edit_slot_path(slot.id), method: :get %></td>
+      <td><%= link_to '削除', slot_path(slot.id), method: :delete %></td>
+      <td><%= link_to 'コピー', copy_slot_path(slot.id), method: :get %></td>
+    </tr>
+    <% end %>
+  <% end %>
+</table>
 
-<% if @slots.present?%>
-今あるslot
-<% @slots.each do |slot| %>
-<p><%= slot.max_num%></p>
-<p><%= slot.date%></p>
-<p><%= slot.access_level%></p>
-<p><%= slot.power_switch%></p>
-残<%= available_num slot %>本
-<p><%= slot.start_time%></p>
-<p><%= slot.end_time%></p>
-<%= link_to '更新', edit_slot_path(slot.id), method: :get %>
-<%= link_to '削除', slot_path(slot.id), method: :delete %>
-<%= link_to 'コピー', copy_slot_path(slot.id), method: :get %>
-<% end %>
-<% end %>
+<%= render "layouts/footer"%>

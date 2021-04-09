@@ -11,8 +11,12 @@
 
   <div class="header-nav">
       <div class="navbar-main">
-        <li>こんにちは</li>
-        <li>こんばんわ</li>
+        <% if user_signed_in? && current_user.authority == 9 %>
+        <li><%= link_to '管理画面に戻る', admin_bookings_path, method: :get %></li>
+        <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
+        <%elsif user_signed_in? %>
+        <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
+        <% end %>
       </div>
   </div>
 </div>

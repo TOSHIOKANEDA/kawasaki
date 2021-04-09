@@ -1,8 +1,18 @@
 class SlotsController < ApplicationController
-  before_action :find_params, only: [:edit, :update, :destroy]
+  include CommonActions
+  before_action :authorized_user
+  before_action :find_params, only: [:edit, :update, :destroy, :slot_booking]
 
   def index
+    # ここはBookingが入っている分については、リストさせない方が良いwhereで制限を入れる
     @slots = Slot.all
+  end
+
+  def show
+    if self.class.helpers.available_num(slot) - @slot.max_num == 0
+      p "Bookingはありません"
+      redirect_to new_slot_path
+    end
   end
 
   def new
@@ -15,7 +25,7 @@ class SlotsController < ApplicationController
     @slot = Slot.new(slot_params)
     if @slot.save
       p "無事保存"
-      redirect_to root_path
+      redirect_to new_slot_path
     else
       p "失敗"
       redirect_to new_slot_path
@@ -36,7 +46,7 @@ class SlotsController < ApplicationController
   def destroy
     if @slot.destroy
       p "無事削除"
-      redirect_to root_path
+      redirect_to new_slot_path
     else
       p "失敗"
       redirect_to new_slot_path
@@ -54,7 +64,7 @@ class SlotsController < ApplicationController
       Slot.update_all(power_switch: 0)
     else
       p "失敗"
-      redirect_to root_path
+      redirect_to new_slot_path
     end
   end
 

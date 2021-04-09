@@ -11,13 +11,18 @@ Rails.application.routes.draw do
   end
 
   resources :users, only: [:index, :show, :update, :edit]
-  resources :slots
+  resources :slots do
+    collection do
+      put :power
+      patch :update_date_all
+    end
+  end
   resources :bookings do
     collection do
+      get :admin
       post :confirm
     end
   end
-  put "power", to:  "slots#power"
   get "copy/:id", to:  "slots#copy", as: 'copy_slot'
-  patch "update_date_all", to:  "slots#update_date_all" 
+
 end

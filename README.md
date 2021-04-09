@@ -97,6 +97,7 @@ https://qiita.com/Tatsu88/items/ab5d4927bbfade959c1c
 1=問題あり、0=問題なし
 full_status: 0:余裕あり, 1:余裕なし、
 power_switch: 0:電源on, 1:電源off
+authority: 0:一般, 1:一般, 9:管理者
 
 次の開発
 USER権限の設定

@@ -6,6 +6,14 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :company, :phone, :authority, :certificate, :order_num])
   end
 
+  def after_sign_in_path_for(resource)
+    if current_user.authority == 9
+      admin_bookings_path
+    else
+      root_path
+    end
+  end
+
   def update_full_status(id)
     slot = Slot.find(id)
     bookings = Booking.where(slot_id: slot)
