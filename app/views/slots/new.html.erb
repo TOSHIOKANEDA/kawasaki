@@ -15,6 +15,7 @@
   <td>残り台数</td>
   <td>開始時間</td>
   <td>終了時間</td>
+  <td>予約一覧</td>
   <td>更新</td>
   <td>削除</td>
   <td>コピー</td>
@@ -28,6 +29,7 @@
       <td><%= available_num slot %></td>
       <td><%= slot.start_time%></td>
       <td><%= slot.end_time%></td>
+      <td><%= link_to 'Booking内容確認', slot_path(slot.id), method: :get %></td> 
       <td><%= link_to '更新', edit_slot_path(slot.id), method: :get %></td>
       <td><%= link_to '削除', slot_path(slot.id), method: :delete %></td>
       <td><%= link_to 'コピー', copy_slot_path(slot.id), method: :get %></td>

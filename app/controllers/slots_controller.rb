@@ -1,18 +1,20 @@
 class SlotsController < ApplicationController
   include CommonActions
   before_action :authorized_user
-  before_action :find_params, only: [:edit, :update, :destroy, :slot_booking]
+  before_action :find_params, only: [:edit, :update, :destroy, :slot_booking, :show]
 
   def index
     # ここはBookingが入っている分については、リストさせない方が良いwhereで制限を入れる
-    @slots = Slot.all
+    ids = Booking.pluck(:slot_id).uniq
+    
   end
 
   def show
-    if self.class.helpers.available_num(slot) - @slot.max_num == 0
+    if view_context.available_num(params[:id].to_i)- @slot.max_num == 0
       p "Bookingはありません"
       redirect_to new_slot_path
     end
+    @bookings = Booking.where(slot_id: @slot.id)
   end
 
   def new
