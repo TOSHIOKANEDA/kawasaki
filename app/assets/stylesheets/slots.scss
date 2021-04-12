@@ -1,3 +1,46 @@
-// Place all the styles related to the slots controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: https://sass-lang.com/
+@mixin box{
+  border: solid 2px #878787;
+  display: inline-block;
+  padding: 5px 5px 5px 5px;
+  margin: 5px;
+  font-size: 16px;
+}
+
+.field {
+  text-align: left;
+  margin: 10px;
+  background-color: #ffcc80;
+  box-shadow: 0 3px 4px rgba(0, 0, 0, 0.4);
+  .submit{
+    float: right;
+    @include box;
+    width: 100px;
+  }
+  span {
+    margin-left: 30px;
+  }
+
+}
+
+.num_box{
+  @include box;
+  width: 50px;
+}
+
+.select_box{
+  @include box;
+  width: 130px;
+}
+
+.date_box{
+  @include box;
+  width: 150px;
+}
+
+.simple_submit {
+  @include box;
+  width: 200px;
+}
+
+
+

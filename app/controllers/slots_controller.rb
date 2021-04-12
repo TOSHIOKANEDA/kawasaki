@@ -3,12 +3,6 @@ class SlotsController < ApplicationController
   before_action :authorized_user
   before_action :find_params, only: [:edit, :update, :destroy, :slot_booking, :show]
 
-  def index
-    # ここはBookingが入っている分については、リストさせない方が良いwhereで制限を入れる
-    ids = Booking.pluck(:slot_id).uniq
-    
-  end
-
   def show
     if view_context.available_num(params[:id].to_i)- @slot.max_num == 0
       p "Bookingはありません"
@@ -18,6 +12,8 @@ class SlotsController < ApplicationController
   end
 
   def new
+    # Bookingが入っているSlotを取り出している
+    # ids = Booking.pluck(:slot_id).uniq
     @slot = Slot.new
     @slots = Slot.all
     @current_vol = 1
@@ -73,7 +69,7 @@ class SlotsController < ApplicationController
   def update_date_all
     original_slots =  params[:slots].reject!{ |key, value| value == "0" }
     @slots = Slot.where(id: original_slots.keys).update_all(date: params[:to_date]) if original_slots.present?
-    redirect_to slots_path
+    redirect_to new_slot_path
   end
 
   def copy

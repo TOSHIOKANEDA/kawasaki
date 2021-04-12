@@ -1,7 +1,14 @@
-  <%= f.number_field :max_num, required: true , min: @current_vol%>
-  <%= f.date_field :date, required: true %>
-  <%= f.select :start_time, options_for_select(Slot.time_lists.keys), required: true %>から
-  <%= f.select :end_time, options_for_select(Slot.time_lists.keys), required: true %>まで
-  <%= f.select :access_level, options_for_select(Slot.access_levels.keys), required: true%>
-  <%= f.select :power_switch, options_for_select(Slot.power_switches.keys), required: true %>
-  <%= f.submit "確定" %>
+<div class="field">
+  <span>台数</span>
+  <%= f.number_field :max_num, required: true , min: @current_vol, class: "num_box"%>
+  <span>日にち</span>
+  <%= f.date_field :date, required: true, min: Date.today, class: "date_box"  %>
+  <span>時間</span>
+  <%= f.select :start_time, options_for_select(Slot.time_lists.keys), {required: true}, class: "select_box" %>~
+  <%= f.select :end_time, options_for_select(Slot.time_lists.keys), {required: true}, class: "select_box" %>
+  <span>利用者権限</span>
+  <%= f.select :access_level, options_for_select(Slot.access_levels.keys), {required: true}, class: "select_box" %>
+  <span>表示ON/OFF</span>
+  <%= f.select :power_switch, options_for_select(Slot.power_switches.keys), {required: true}, class: "select_box" %>
+  <%= f.submit "確定", class: "submit"%>
+</div>

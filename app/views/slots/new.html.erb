@@ -1,41 +1,49 @@
 <%= render "layouts/header"%>
 
 <%= form_with model: @slot, local: true do |f| %>
-<%= render partial: "new&edit_form", locals: { f: f } %>
+<p>新規予約枠設定</p>
+  <%= render partial: "new&edit_form", locals: { f: f } %>
 <% end %>
-<%= link_to 'Slot日にち変更', slots_path, method: :get %>
-<table>
-  <% if @slots.present?%>
-  今あるslot
-  <tr>
-  <th>表示</th>
-  <td>日にち</td>
-  <td>権限</td>
-  <td>受け入れ台数</td>
-  <td>残り台数</td>
-  <td>開始時間</td>
-  <td>終了時間</td>
-  <td>予約一覧</td>
-  <td>更新</td>
-  <td>削除</td>
-  <td>コピー</td>
-  </tr>
-  <% @slots.each do |slot| %>
-    <tr>
-      <th><%= slot.power_switch%></th>
-      <td><%= slot.date%></td>
-      <td><%= slot.access_level%></td>
-      <td><%= slot.max_num%></td>
-      <td><%= available_num slot %></td>
-      <td><%= slot.start_time%></td>
-      <td><%= slot.end_time%></td>
-      <td><%= link_to 'Booking内容確認', slot_path(slot.id), method: :get %></td> 
-      <td><%= link_to '更新', edit_slot_path(slot.id), method: :get %></td>
-      <td><%= link_to '削除', slot_path(slot.id), method: :delete %></td>
-      <td><%= link_to 'コピー', copy_slot_path(slot.id), method: :get %></td>
-    </tr>
-    <% end %>
+
+<% if @slots.present?%>
+  <%= form_with url: update_date_all_slots_path, local: true, method: :patch do |f| %>
+    <table>
+      <tr>
+      <th>表示</th>
+      <th>チェック</th>
+      <td>日にち</td>
+      <td>権限</td>
+      <td>受け入れ台数</td>
+      <td>残り台数</td>
+      <td>開始時間</td>
+      <td>終了時間</td>
+      <td>予約一覧</td>
+      <td>更新</td>
+      <td>削除</td>
+      <td>コピー</td>
+      </tr>
+      <% @slots.each do |slot| %>
+        <tr>
+          <th><%= slot.power_switch%></th>
+          <td><%= f.check_box "slots[#{slot.id}]"%></td>
+          <td><%= slot.date%></td>
+          <td><%= slot.access_level%></td>
+          <td><%= slot.max_num%></td>
+          <td><%= available_num slot %></td>
+          <td><%= slot.start_time%></td>
+          <td><%= slot.end_time%></td>
+          <td><%= link_to 'Booking内容確認', slot_path(slot.id), method: :get %></td> 
+          <td><%= link_to '更新', edit_slot_path(slot.id), method: :get %></td>
+          <td><%= link_to '削除', slot_path(slot.id), method: :delete %></td>
+          <td><%= link_to 'コピー', copy_slot_path(slot.id), method: :get %></td>
+        </tr>
+      <% end %>
+    </table>
+    <%= f.date_field :to_date, required: true, min: Date.today, class: "date_box"  %>
+    <%= f.submit "一括ステータス変更", class: "simple_submit" %>
   <% end %>
-</table>
+<% end %>
+
+
 
 <%= render "layouts/footer"%>

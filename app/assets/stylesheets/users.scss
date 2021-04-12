@@ -1,6 +1,4 @@
-/*still in the works :P*/
-
-%field {
+@mixin field {
   font-size: 20px;
   font-weight: 400;
   padding: 10px 15px 10px 55px;
@@ -43,15 +41,15 @@
       @extend %icon;
     }
     .email_field {
-      @extend %field;
+      @include field;
       margin-bottom: 15px;
     }
     .pass_field {
-      @extend %field;
+      @include field;
     }
 
     .plain_field {
-      @extend %field;
+      @include field;
       margin-bottom: 15px;
     }
     .submit_button {
