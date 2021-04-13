@@ -1,15 +1,15 @@
 class BookingsController < ApplicationController
-  include CommonActions
-  before_action :authorized_user, only: [:admin]
   before_action :set_params, only: [:confirm, :create]
   before_action :find_params, only: [:edit, :show, :update, :destroy]
   before_action :find_available_slots, only: [:full_booking, :new, :create]
   before_action :authenticate_user!
 
   def admin
+    authorized_user(current_user.authority_before_type_cast)
   end
 
   def index
+    @bookings = Booking.where(user_id: current_user.id)
   end
 
   def destroy

@@ -1,7 +1,7 @@
 class SlotsController < ApplicationController
-  include CommonActions
-  before_action :authorized_user
   before_action :find_params, only: [:edit, :update, :destroy, :slot_booking, :show]
+  before_action :authenticate_user!
+  before_action :authorizer
 
   def show
     if view_context.available_num(params[:id].to_i)- @slot.max_num == 0
@@ -37,7 +37,7 @@ class SlotsController < ApplicationController
       redirect_to new_slot_path
     else
       p "失敗"
-      redirect_to root_path
+      redirect_to new_slot_path
     end
   end
 
@@ -88,4 +88,9 @@ class SlotsController < ApplicationController
   def find_params
     @slot = Slot.find(params[:id])
   end
+
+  def authorizer
+    authorized_user(current_user.authority_before_type_cast)
+  end
+
 end

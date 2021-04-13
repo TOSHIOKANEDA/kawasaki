@@ -97,9 +97,13 @@ https://qiita.com/Tatsu88/items/ab5d4927bbfade959c1c
 1=問題あり、0=問題なし
 full_status: 0:余裕あり, 1:余裕なし、
 power_switch: 0:電源on, 1:電源off
-authority: 0:一般, 1:一般, 9:管理者
+access_level(MODEL: Booking): 0:一般権限, 1:VIP権限, 2:ラウンド権限
+authority(MODEL: User): 0:一般, 1:特別, 9:管理者
 
-次の開発
-USER権限の設定
+ロック
+1. Slotは9番以外サインインへ誘導(authorizer)&&サインインのみ
+2. User#index は9番以外サインインへ誘導(authorizer)&&サインインのみ
+3. User/Slotはbefore_action :authenticate_user!
+
 
 本番環境

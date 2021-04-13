@@ -7,11 +7,15 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
-    if current_user.authority == 9
+    if current_user.authority_before_type_cast == 9
       admin_bookings_path
     else
-      root_path
+      new_booking_path
     end
+  end
+
+  def after_sign_out_path_for(resource)
+    new_user_session_path
   end
 
   def update_full_status(id)
@@ -22,6 +26,10 @@ class ApplicationController < ActionController::Base
     elsif slot.max_num - bookings.length > 0
       slot.update(full_status: 0)
     end
+  end
+
+  def authorized_user(user_authority)
+    redirect_to new_user_session_path unless user_authority == 9
   end
   
 end

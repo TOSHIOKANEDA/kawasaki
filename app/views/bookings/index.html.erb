@@ -1,10 +1,9 @@
 <%= render "layouts/header"%>
 
+ここには個人のBooking一覧を入れたい
 
-<p><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></p>
-<p><%= link_to "Booking登録", new_booking_path %></p>
-<p><%= link_to "#{current_user.company}さんのBooking一覧", users_path(id: current_user.id) %></p>
-<p><%= link_to "#{current_user.company}さんの登録情報一覧", user_path(id: current_user.id) %></p>
+
+
 
 
 <%= render "layouts/footer"%>

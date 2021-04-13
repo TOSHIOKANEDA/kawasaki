@@ -1,11 +1,18 @@
 class UsersController < ApplicationController
-  before_action :set_params, only: [:show, :index, :update]
+  before_action :set_params, only: [:update, :edit]
+  before_action :authenticate_user!
 
   def index
-    @bookings = Booking.where(user_id: @user.id)
+    # User登録一覧を表示
+    authorized_user(current_user.authority_before_type_cast)
+    @normal_users = User.where(authority: 0)
+    @special_users = User.where(authority: 1)
   end
 
   def show
+  end
+
+  def edit
   end
 
   def update
