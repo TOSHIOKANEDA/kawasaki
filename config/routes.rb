@@ -2,7 +2,8 @@ Rails.application.routes.draw do
   root 'bookings#index'
   devise_for :users, controllers: {
     registrations: 'users/registrations',
-    sessions: 'users/sessions'
+    sessions: 'users/sessions',
+    confirmations: 'users/confirmations'
   }
 
   resources :users
