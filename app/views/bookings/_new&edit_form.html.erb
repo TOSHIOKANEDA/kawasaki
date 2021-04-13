@@ -1,0 +1,26 @@
+  <div class="field">
+    <%= f.label :imp_cntr_num %>
+    <%= f.text_area :imp_cntr_num, value: @imp_val%>
+  </div>
+
+  <div class="field">
+    <%= f.label :exp_cntr_num %>
+    <%= f.text_area :exp_cntr_num , value: @exp_val%>
+  </div>
+    
+  <div class="field">
+    <%= f.label :slot_id %>
+    <%= f.collection_select(:slot_id, @slots, :id, :date, prompt: "日付を選択してください") %>
+  </div>
+
+  <div class="field">
+    <%= f.label :off_action %>
+    <%= f.select :off_action, options_for_select(Booking.off_actions.keys), { prompt: "選択してください" }, required: true%>
+  </div>
+
+  <div class="field">
+    <%= f.label :on_action %>
+    <%= f.select :on_action, options_for_select(Booking.on_actions.keys), { prompt: "選択してください" }, required: true%>
+  </div>
+
+  <%= f.submit "確認画面へ" %>

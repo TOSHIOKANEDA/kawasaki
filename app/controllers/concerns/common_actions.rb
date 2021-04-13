@@ -1,0 +1,2 @@
+module CommonActions
+end

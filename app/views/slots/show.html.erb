@@ -1,0 +1,32 @@
+<%= render "layouts/header"%>
+
+<table>
+  <tr>
+  <th>BookingCode</th>
+  <td>輸入コンテナ番号</td>
+  <td>輸出コンテナ番号</td>
+  <td>off_action</td>
+  <td>on_action</td>
+  <td>お名前</td>
+  <td>会社名</td>
+  <td>電話番号</td>
+  <td>更新</td>
+  <td>削除</td>
+  </tr>
+<% @bookings.each do |booking| %>
+    <tr>
+      <th><%= booking.booking_code%></th>
+      <td><%= booking.imp_cntr_num%></td>
+      <td><%= booking.exp_cntr_num%></td>
+      <td><%= booking.off_action%></td>
+      <td><%= booking.on_action%></td>
+      <td><%= booking.user.name %></td>
+      <td><%= booking.user.company %></td>
+      <td><%= booking.user.phone %></td>
+      <td><%= link_to '更新', edit_booking_path(booking.id), method: :get %></td>
+ 
+    </tr>
+  <% end %>
+</table>
+
+<%= render "layouts/footer"%>

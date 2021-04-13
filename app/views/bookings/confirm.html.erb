@@ -1,0 +1,10 @@
+<%= form_with model: @booking, local: true, url: {action: 'create'}  do |f| %>
+  <p><%= f.hidden_field :imp_cntr_num %><%= @booking.imp_cntr_num %></p>
+  <p><%= f.hidden_field :exp_cntr_num %><%= @booking.exp_cntr_num %></p>
+  <p><%= f.hidden_field :off_action %><%= @booking.off_action %></p>
+  <p><%= f.hidden_field :on_action %><%= @booking.on_action %></p>
+  <p><%= @booking.slot.date %></p>
+  <%= f.hidden_field :slot_id  %><% @booking.slot_id %>
+  <p><%= f.submit '戻る', name: 'back' %></p>
+  <p><%= f.submit '確定する' %></p>
+<% end %>

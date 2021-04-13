@@ -1,0 +1,27 @@
+<%= render "layouts/header"%>
+
+<div class="user_subject">
+<span>Kawasakiへログイン</span>
+</div>
+<div class="user_base">
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <div class="user_form">
+      <%= f.email_field :email, class: "email_field", required: true, placeholder: "メールアドレス"%>
+      <i class="fa fa-user"></i>
+    </div>
+
+    <div class="user_form">
+      <%= f.password_field :password, class: "pass_field", required: true, placeholder: "パスワード"%>
+      <i class="fa fa-lock"></i>
+    </div>
+
+    <div class="user_form">
+      <%= f.submit "ログイン", class: "submit_button"%>
+    </div>
+  <% end %>
+  <%= render "devise/shared/links" %>
+</div>
+
+
+<%= render "layouts/footer"%>
+

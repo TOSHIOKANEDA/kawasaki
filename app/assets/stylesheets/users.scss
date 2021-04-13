@@ -1,0 +1,109 @@
+@mixin field {
+  font-size: 20px;
+  font-weight: 400;
+  padding: 10px 15px 10px 55px;
+  position: relative;
+  width: 300px;
+  height: 24px;
+  border: none;
+  background: #f7f3eb;
+  color: #777;
+}
+
+%icon {              
+  font-size: 18px;
+  left: 0px;
+  top: 0px;
+  position: absolute;
+  height: 44px;
+  width: 44px;
+  color: #f7f3eb;
+  background: #676056;
+  text-align: center;
+  line-height: 44px;
+  transition: all 0.3s ease-out;
+  pointer-events: none;
+  }
+
+.user_subject {
+  margin: 0 20px;
+  background-color: #273F79;
+  color: #fff;
+  span{
+    font-size: 20px;
+    font-weight: 400;
+    margin-left: 10%;
+  }
+}
+
+
+
+.user_base {
+  position: relative;
+  margin: 100px auto;
+  width: 370px;
+  height: 315px;
+  background: white;
+  border-radius: 3px;
+
+
+  .user_form{
+    position: relative;
+    margin: 0 50px;
+    i {
+      @extend %icon;
+    }
+    .email_field {
+      @include field;
+      margin-bottom: 15px;
+    }
+    .pass_field {
+      @include field;
+    }
+
+    .plain_field {
+      @include field;
+      margin-bottom: 15px;
+    }
+    .submit_button {
+      margin-top: 45px;
+      width: 370px;
+      text-align: center;
+      font-size: 14px;
+      font-weight: bold;
+      padding: 12px 0;
+      color: #fff;
+      background-color: #273F79;
+      text-shadow: none;
+      border: none;
+      cursor: pointer;
+      margin-bottom: 20px;
+    }
+  }
+}
+
+.login_shared_msg {
+  font-size: 1.2em;
+  padding: 1em 0;
+  text-align: left;
+  a {
+    color: #8c8c8c;
+    text-decoration: none;
+    transition: border-color 0.3s;
+  }
+}
+
+.login_caution_msg {
+  color: #8c8c8c;
+  font-size: 0.9em;
+  margin-left: 10em;
+  text-align: center;
+}
+
+
+
+
+
+
+
+

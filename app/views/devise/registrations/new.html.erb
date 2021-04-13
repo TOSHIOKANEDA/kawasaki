@@ -1,0 +1,53 @@
+<%= render "layouts/header"%>
+
+<div class="user_subject">
+  <span>Kawasaki新規登録</span>
+</div>
+<div class="user_base">
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+
+    <div class="user_form">
+      <%= f.text_field :name, class: "plain_field", required: true, placeholder: "ご担当社名"  %>
+      <i class="fas fa-user"></i>
+    </div>
+
+    <div class="user_form">
+      <%= f.text_field :company, class: "plain_field", required: true, placeholder: "会社名" %>
+      <i class="fa fa-truck"></i>
+    </div>
+
+    <div class="user_form">
+      <%= f.text_field :phone, class: "plain_field", required: true, placeholder: "電話番号"%>
+      <i class="fas fa-phone"></i>
+    </div>
+
+    <div class="user_form">
+      <%= f.email_field :email, class: "email_field", required: true, placeholder: "メールアドレス" %>
+      <i class="fas fa-envelope"></i>
+    </div>
+
+    <div class="user_form">
+      <%= f.password_field :password, class: "plain_field", required: true, placeholder: "パスワード" %>
+      <i class="fa fa-lock"></i>
+    </div>
+
+    <div class="user_form">
+      <%= f.password_field :password_confirmation, class: "pass_field", required: true, placeholder: "パスワード再度入力" %>
+      <i class="fa fa-lock"></i>
+    </div>
+
+      <% if @minimum_password_length %>
+      <div class="login_caution_msg">
+      (パスワードは<%= @minimum_password_length %> 文字以上でお願いします)
+      </div>
+      <% end %>
+
+    <div class="user_form">
+      <%= f.submit "新規登録する", class: "submit_button" %>
+    </div>
+  <% end %>
+  <%= render "devise/shared/links"%>
+
+</div>
+<%= render "layouts/footer"%>

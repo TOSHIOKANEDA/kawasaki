@@ -1,0 +1,23 @@
+<%= render "layouts/header"%>
+
+<div class="user_subject">
+  <span>パスワード再発行のページ</span>
+</div>
+<div class="user_base">
+<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+
+  <div class="user_form">
+    <%= f.email_field :email, class: "email_field", required: true, placeholder: "メールアドレス"  %>
+    <i class="fas fa-envelope"></i>
+  </div>
+
+  <div class="user_form">
+    <%= f.submit "パスワード再設定メール送信", class: "submit_button"  %>
+  </div>
+<% end %>
+<%= render "devise/shared/links" %>
+</div>
+
+
+<%= render "layouts/footer"%>

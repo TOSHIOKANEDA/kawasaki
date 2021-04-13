@@ -1,0 +1,19 @@
+<h1>Users#show</h1>
+<p>Find me in app/views/users/show.html.erb</p>
+なぜ？！
+<% if @booking.present?%>
+  <% @bookings.each do |booking| %>
+    <p>受付番号：<%= booking.booking_code %></p>
+    <% if booking.imp_cntr_num.present?%>
+    <p>空バン返却時のコンテナ番号；<%= booking.imp_cntr_num %></p>
+    <% end %>
+    <% if booking.exp_cntr_num.present?%>
+    <p>実入り搬入時のコンテナ番号：<%= booking.exp_cntr_num %></p>
+    <% end %>
+    <p>卸す時：<%= booking.off_action %></p>
+    <p>積む時：<%= booking.on_action %></p>
+    <p>このBookingを訂正する：<%= link_to '更新', edit_booking_path(booking.id), method: :get %> </p>
+    <p>このBookingを削除する：<%= link_to '削除', booking_path(booking.id), method: :delete %> </p>
+    ===
+  <% end %>
+<% end %>

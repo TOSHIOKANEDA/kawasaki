@@ -1,0 +1,30 @@
+<%= render "layouts/header"%>
+
+<%= form_with model: @user, local: true, url: {action: 'update'}  do |f| %>
+<div class="user_subject">
+  <span>ユーザー登録の更新</span>
+</div>
+<div class="user_base">
+  <div class="user_form">
+    <%= f.text_field :name, class: "plain_field", value: @user.name %>
+    <i class="fas fa-user"></i>
+  </div>
+  <div class="user_form">
+    <%= f.text_field :company, class: "plain_field", value: @user.company %>
+    <i class="fa fa-truck"></i>
+  </div>
+  <div class="user_form">
+    <%= f.text_field :phone, class: "plain_field", value: @user.phone %>
+    <i class="fas fa-phone"></i>
+  </div>
+  <div class="user_form">
+    <%= f.email_field :email, class: "email_field", value: @user.email %></p>
+    <i class="fas fa-envelope"></i>
+  </div>
+  <div class="user_form">
+    <%= f.submit "確定", class: "submit_button"%>
+  </div>
+</div>
+<% end %>
+
+<%= render "layouts/footer"%>
