@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 2021_01_10_134049) do
     t.string "booking_code", null: false
     t.string "imp_cntr_num", null: false
     t.string "exp_cntr_num"
+    t.string "exp_booking_num"
     t.integer "off_action", null: false
     t.integer "on_action", null: false
     t.datetime "created_at", null: false

@@ -1,26 +1,27 @@
-  <div class="field">
-    <%= f.label :imp_cntr_num %>
-    <%= f.text_area :imp_cntr_num, value: @imp_val%>
+<div class="field">
+  <div class="field_new">
+    <%= f.select :off_action, options_for_select(Booking.off_actions.keys), { prompt: "卸し時の種別を選択してください" }, required: true, class: "new_box" %>
+    <span>卸し時コンテナ番号</span>
+    <%= f.text_field :imp_cntr_num, value: @imp_val, class: "new_box"%>
   </div>
 
-  <div class="field">
-    <%= f.label :exp_cntr_num %>
-    <%= f.text_area :exp_cntr_num , value: @exp_val%>
-  </div>
-    
-  <div class="field">
-    <%= f.label :slot_id %>
-    <%= f.collection_select(:slot_id, @slots, :id, :date, prompt: "日付を選択してください") %>
+  <div class="field_new">
+   
+    <%= f.select :on_action, options_for_select(Booking.on_actions.keys), { prompt: "積み時の種別を選択してください" }, required: true, class: "new_box", id: "loading_select" %>
+    <span>積み時コンテナ番号</span>
+    <div id="js_field_new">
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :off_action %>
-    <%= f.select :off_action, options_for_select(Booking.off_actions.keys), { prompt: "選択してください" }, required: true%>
+  <div class="field_new">
+    <span>時間帯</span>
+    <%= f.collection_select :slot_id, @slots, :id, :date, {prompt: "日付を選択してください"}, class: "new_box" %>
   </div>
 
-  <div class="field">
-    <%= f.label :on_action %>
-    <%= f.select :on_action, options_for_select(Booking.on_actions.keys), { prompt: "選択してください" }, required: true%>
+  <div class="field_new">
+     <%= f.submit "確認画面へ"%>
   </div>
 
-  <%= f.submit "確認画面へ" %>
+</div>
+
+ 

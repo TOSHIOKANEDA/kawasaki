@@ -22,6 +22,20 @@
 
 }
 
+.field_new {
+  text-align: center;
+  margin: 50px 0;
+  span {
+    margin: 20px;
+  }
+}
+.new_box {
+  @include box;
+  padding: 3px;
+  width: 30%;
+  font-weight: bold;
+}
+
 .num_box{
   @include box;
   width: 50px;

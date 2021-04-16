@@ -42,7 +42,7 @@
   position: relative;
   margin: 100px auto;
   width: 370px;
-  height: 315px;
+  height: auto;
   background: white;
   border-radius: 3px;
 
@@ -85,6 +85,7 @@
 .login_shared_msg {
   font-size: 1.2em;
   padding: 1em 0;
+  margin-bottom: 10px;
   text-align: left;
   a {
     color: #8c8c8c;
