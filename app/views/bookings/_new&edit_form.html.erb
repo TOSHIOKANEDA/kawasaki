@@ -1,17 +1,21 @@
 <div class="field">
   <div class="field_new">
+  <span>卸し時</span>
     <%= f.select :off_action, options_for_select(Booking.off_actions.keys), { prompt: "卸し時の種別を選択してください" }, required: true, class: "new_box" %>
-    <span>卸し時コンテナ番号</span>
     <%= f.text_field :imp_cntr_num, value: @imp_val, class: "new_box"%>
   </div>
 
   <div class="field_new">
-   
+  <span>積み時</span>
     <%= f.select :on_action, options_for_select(Booking.on_actions.keys), { prompt: "積み時の種別を選択してください" }, required: true, class: "new_box", id: "loading_select" %>
-    <span>積み時コンテナ番号</span>
-    <div id="js_field_new">
+    <div id="loading_box_1">
+      <%= f.text_field :exp_booking_num, class: "new_box"%>
     </div>
-  </div>
+
+    <div id="loading_box_2">
+      <%= f.text_field :exp_cntr_num, class: "new_box"%>
+    </div>
+  </div>  
 
   <div class="field_new">
     <span>時間帯</span>

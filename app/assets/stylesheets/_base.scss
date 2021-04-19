@@ -32,9 +32,18 @@
 .new_box {
   @include box;
   padding: 3px;
-  width: 30%;
   font-weight: bold;
 }
+
+#loading_box_1, #loading_box_2{
+  display: none;
+  width: 200px;
+  span {
+    margin: 20px;
+  }
+}
+
+
 
 .num_box{
   @include box;
