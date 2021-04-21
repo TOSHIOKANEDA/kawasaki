@@ -1,13 +1,24 @@
-<h1>Bookings#show</h1>
-<p>Find me in app/views/bookings/show.html.erb</p>
+<%= render "layouts/header"%>
+<div class="field">
+  <div class="field_new">
   <p>おろしどり予約完了しました。</p>
-  <p>受付番号：<%= @booking.booking_code %></p>
+  <div class="field_show">
+  受付番号：<span><%= @booking.booking_code %></span>
+  </div>
   <% if @booking.imp_cntr_num.present?%>
-  <p>空バン返却時のコンテナ番号；<%= @booking.imp_cntr_num %></p>
+  <div class="field_show">卸し時のコンテナ番号:<span><%= @booking.imp_cntr_num %></span></div>
   <% end %>
   <% if @booking.exp_cntr_num.present?%>
-  <p>実入り搬入時のコンテナ番号：<%= @booking.exp_cntr_num %></p>
+  <div class="field_show">積み時のコンテナ番号：<span><%= @booking.exp_cntr_num %></span></div>
   <% end %>
-  <p>卸す時：<%= @booking.off_action %></p>
-  <p>積む時：<%= @booking.on_action %></p>
+  <% if @booking.exp_booking_num.present?%>
+  <div class="field_show">積み時のBooking番号：<span><%= @booking.exp_booking_num %></span></div>
+  <% end %>
+  <div class="field_show">予約時間：<%= @booking.slot.date.strftime("%Y年%m月%d日") %>の<%= @booking.slot.start_time %>から<%= @booking.slot.end_time %></div>
+  <div class="field_show">卸す時：<span><%= @booking.off_action %></span></div>
+  <div class="field_show">積む時：<span><%= @booking.on_action %></span></div>
   <p>ありがとうございました</p>
+  </div>
+</div>
+
+  <%= render "layouts/footer"%>

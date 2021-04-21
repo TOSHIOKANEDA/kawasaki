@@ -9,11 +9,11 @@
   <span>積み時</span>
     <%= f.select :on_action, options_for_select(Booking.on_actions.keys), { prompt: "積み時の種別を選択してください" }, required: true, class: "new_box", id: "loading_select" %>
     <div id="loading_box_1">
-      <%= f.text_field :exp_booking_num, class: "new_box"%>
+      <%= f.text_field :exp_booking_num, class: "new_box", id: "bkg_box"%>
     </div>
 
     <div id="loading_box_2">
-      <%= f.text_field :exp_cntr_num, class: "new_box"%>
+      <%= f.text_field :exp_cntr_num, class: "new_box", id: "cntr_box"%>
     </div>
   </div>  
 

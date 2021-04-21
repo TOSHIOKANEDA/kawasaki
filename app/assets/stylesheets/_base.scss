@@ -19,7 +19,13 @@
   span {
     margin-left: 30px;
   }
+}
 
+.field_admin {
+  display: flex;
+  .field_admin_menu {
+    width : calc(100% / 3);
+  }
 }
 
 .field_new {
@@ -65,5 +71,13 @@
   width: 200px;
 }
 
-
+.field_show {
+  width: 80%;
+  text-align: left;
+  margin: 20px;
+  font-size: 16px;
+  span {
+    margin-left: 15px;
+  }
+}
 

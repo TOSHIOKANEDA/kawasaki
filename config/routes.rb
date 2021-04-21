@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   resources :bookings do
     collection do
       get :admin
+      get :full
       post :confirm
     end
   end
