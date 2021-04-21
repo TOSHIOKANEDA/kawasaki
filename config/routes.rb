@@ -20,6 +20,7 @@ Rails.application.routes.draw do
       get :admin
       get :full
       post :confirm
+      get :booking_down_load
     end
   end
   get "copy/:id", to:  "slots#copy", as: 'copy_slot'

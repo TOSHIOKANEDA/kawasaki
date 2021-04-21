@@ -8,6 +8,22 @@ class BookingsController < ApplicationController
     authorized_user(current_user.authority_before_type_cast)
   end
 
+  def booking_down_load
+    authorized_user(current_user.authority_before_type_cast)
+    @bookings = Booking.all
+    @slots = Slot.all
+    if @bookings.present?
+      respond_to do |format|
+      format.xlsx{
+        response.headers["Content-Disposition"] = 'attachment; filename="予約一覧.xlsx"'
+      }
+      end
+    else
+      redirect_to admin_bookings_path
+      p "Bookingはありません"
+    end
+  end
+
   def index
     @bookings = Booking.where(user_id: current_user.id)
   end
