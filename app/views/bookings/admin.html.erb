@@ -1,11 +1,19 @@
 <%= render "layouts/header"%>
 
 <div class="field_admin">
-  <div class="field_admin_menu"><%= link_to "Booking管理", new_slot_path %></div>
-  <div class="field_admin_menu"><%= link_to "User管理", users_path %></div>
-  <div class="field_admin_menu">
-    <%= link_to "電源ON", power_slots_path(turn: "on"), method: :put %>
-    <%= link_to "電源OFF", power_slots_path(turn: "off"), method: :put %>
-  </div>
+  <ul class="field_admin_menu">
+    Booking関連
+    <li><%= link_to "Booking管理", new_slot_path %></li>
+    <li><%= link_to "Excel出力", booking_down_load_bookings_path(@bookings, format: :xlsx) %></li>
+  </ul>
+  <ul class="field_admin_menu">
+    User関連
+    <li><%= link_to "User管理", users_path %></li>
+  </ul>
+  <ul class="field_admin_menu">
+    スイッチ
+    <li><%= link_to "電源ON", power_slots_path(turn: "on"), method: :put %></li>
+    <li><%= link_to "電源OFF", power_slots_path(turn: "off"), method: :put %></li>
+  </ul>
 </div>
 <%= render "layouts/footer"%>

@@ -1,0 +1,13 @@
+wb = xlsx_package.workbook
+@slots = @bookings.group(:slot_id)
+
+@slots.each do |slot|
+  wb.add_worksheet do |sheet|
+    sheet.add_row ["Booking_code", "卸し時コンテナ番号", "積み時コンテナ番号", "積み時Booking番号", "積み時", "卸し時"]
+    @a_bookings = Booking.where(slot_id: slot.slot_id)
+    @a_bookings.each do |booking|    
+        sheet.add_row [booking.booking_code, booking.imp_cntr_num, booking.exp_cntr_num, booking.exp_booking_num, 
+        booking.on_action, booking.off_action]
+    end
+  end
+end
