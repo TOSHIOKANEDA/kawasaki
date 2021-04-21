@@ -23,7 +23,7 @@
   line-height: 44px;
   transition: all 0.3s ease-out;
   pointer-events: none;
-  }
+}
 
 .user_subject {
   margin: 0 20px;
@@ -45,6 +45,15 @@
   height: auto;
   background: white;
   border-radius: 3px;
+
+  .user_show{
+    @include field;
+    background: white;
+    margin-bottom: 20px;
+    i {
+      @extend %icon;
+    }
+  }
 
 
   .user_form{

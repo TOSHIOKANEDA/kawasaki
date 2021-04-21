@@ -1,10 +1,11 @@
 class UsersController < ApplicationController
-  before_action :set_params, only: [:update, :edit, :destroy]
+  before_action :find_params, only: [:update, :edit, :destroy, :show]
   before_action :authenticate_user!
+  before_action :authorizer, only: [:index, :destroy]
+  before_action :identifier, only: [:show, :edit, :update]
 
   def index
     # User登録一覧を表示
-    authorized_user(current_user.authority_before_type_cast)
     @normal_users = User.where(authority: 0)
     @special_users = User.where(authority: 1)
   end
@@ -25,7 +26,6 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    authorized_user(current_user.authority_before_type_cast)
     if @user.delete
       redirect_to admin_bookings_path
     else
@@ -35,11 +35,22 @@ class UsersController < ApplicationController
 
   private
 
-  def set_params
+  def find_params
     @user = User.find(params[:id])
   end
 
   def user_params
     params.require(:user).permit(:name, :company, :phone, :email)
   end
+
+  def authorizer
+    authorized_user(current_user.authority_before_type_cast)
+  end
+
+  def identifier
+    find_params
+    identical_user(@user.id) unless current_user.authority_before_type_cast == 9
+  end
+
+
 end

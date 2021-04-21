@@ -3,13 +3,13 @@ class BookingsController < ApplicationController
   before_action :find_params, only: [:edit, :show, :update, :destroy]
   before_action :find_available_slots, only: [:new, :create, :edit]
   before_action :authenticate_user!
+  before_action :authorizer, only: [:admin, :booking_down_load]
+  before_action :identifier, only: [:edit, :update, :destroy, :show]
 
   def admin
-    authorized_user(current_user.authority_before_type_cast)
   end
 
   def booking_down_load
-    authorized_user(current_user.authority_before_type_cast)
     @bookings = Booking.all
     @slots = Slot.all
     if @bookings.present?
@@ -29,7 +29,6 @@ class BookingsController < ApplicationController
   end
 
   def destroy
-    identical_user(@booking.user_id) unless current_user.authority_before_type_cast == 9
     if @booking.delete
       update_full_status(@booking.slot_id)
       redirect_to root_path
@@ -71,7 +70,6 @@ class BookingsController < ApplicationController
   end
 
   def update
-    identical_user(@booking.user_id) unless current_user.authority_before_type_cast == 9
     if @booking.update(update_params)
       p 'OK'
       redirect_to booking_path(id: @booking.id) 
@@ -81,7 +79,6 @@ class BookingsController < ApplicationController
   end
 
   def edit
-    identical_user(@booking.user_id) unless current_user.authority_before_type_cast == 9
     @imp_val = @booking.imp_cntr_num
     @exp_cntr_val = @booking.exp_cntr_num
     @exp_booking_val = @booking.exp_booking_num
@@ -111,6 +108,15 @@ class BookingsController < ApplicationController
       redirect_to full_bookings_path
       p "もう予約できる枠がありません"
     end
+  end
+
+  def authorizer
+    authorized_user(current_user.authority_before_type_cast)
+  end
+
+  def identifier
+    find_params
+    identical_user(@booking.user_id) unless current_user.authority_before_type_cast == 9
   end
 
 end
