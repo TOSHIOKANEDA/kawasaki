@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_params, only: [:update, :edit]
+  before_action :set_params, only: [:update, :edit, :destroy]
   before_action :authenticate_user!
 
   def index
@@ -21,6 +21,15 @@ class UsersController < ApplicationController
       redirect_to user_path(id: current_user.id) 
     else
       p '失敗'
+    end
+  end
+
+  def destroy
+    authorized_user(current_user.authority_before_type_cast)
+    if @user.delete
+      redirect_to admin_bookings_path
+    else
+      p "失敗"
     end
   end
 

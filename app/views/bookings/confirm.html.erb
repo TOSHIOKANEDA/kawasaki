@@ -1,10 +1,20 @@
-<%= form_with model: @booking, local: true, url: {action: 'create'}  do |f| %>
-  <p><%= f.hidden_field :imp_cntr_num %><%= @booking.imp_cntr_num %></p>
-  <p><%= f.hidden_field :exp_cntr_num %><%= @booking.exp_cntr_num %></p>
-  <p><%= f.hidden_field :off_action %><%= @booking.off_action %></p>
-  <p><%= f.hidden_field :on_action %><%= @booking.on_action %></p>
-  <p><%= @booking.slot.date %></p>
-  <%= f.hidden_field :slot_id  %><% @booking.slot_id %>
-  <p><%= f.submit '戻る', name: 'back' %></p>
-  <p><%= f.submit '確定する' %></p>
-<% end %>
+<%= render "layouts/header"%>
+
+<div class="field">
+  <div class="field_new">
+  <p>おろしどり予約内容をご確認ください。</p>
+    <%= form_with model: @booking, local: true, url: {action: 'create'}  do |f| %>
+      <div class="field_show"><%= f.hidden_field :imp_cntr_num %>卸し時のコンテナ番号:<%= @booking.imp_cntr_num %></div>
+      <div class="field_show"><%= f.hidden_field :exp_booking_num %>積み時のBooking番号：<%= @booking.exp_booking_num %></div>
+      <div class="field_show"><%= f.hidden_field :exp_cntr_num %>積み時のコンテナ番号：<%= @booking.exp_cntr_num %></div>
+      <div class="field_show"><%= f.hidden_field :off_action %>卸す時：<%= @booking.off_action %></div>
+      <div class="field_show"><%= f.hidden_field :on_action %>積む時：<%= @booking.on_action %></div>
+      <div class="field_show">予約時間：<%= @booking.slot.date.strftime("%Y年%m月%d日") %>の<%= @booking.slot.start_time %>から<%= @booking.slot.end_time %></div>
+      <%= f.hidden_field :slot_id  %><% @booking.slot_id %>
+      <p><%= f.submit '戻る', name: 'back' %></p>
+      <p><%= f.submit '確定する' %></p>
+    <% end %>
+  </div>
+</div>
+
+<%= render "layouts/footer"%>

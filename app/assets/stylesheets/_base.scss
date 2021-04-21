@@ -19,8 +19,37 @@
   span {
     margin-left: 30px;
   }
-
 }
+
+.field_admin {
+  display: flex;
+  .field_admin_menu {
+    width : calc(100% / 3);
+  }
+}
+
+.field_new {
+  text-align: center;
+  margin: 50px 0;
+  span {
+    margin: 20px;
+  }
+}
+.new_box {
+  @include box;
+  padding: 3px;
+  font-weight: bold;
+}
+
+#loading_box_1, #loading_box_2{
+  display: none;
+  width: 200px;
+  span {
+    margin: 20px;
+  }
+}
+
+
 
 .num_box{
   @include box;
@@ -42,5 +71,13 @@
   width: 200px;
 }
 
-
+.field_show {
+  width: 80%;
+  text-align: left;
+  margin: 20px;
+  font-size: 16px;
+  span {
+    margin-left: 15px;
+  }
+}
 

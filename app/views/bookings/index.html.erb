@@ -1,7 +1,35 @@
 <%= render "layouts/header"%>
+<table>
+  <tr>
+  <th>BookingCode</th>
+  <td>輸入コンテナ番号</td>
+  <td>輸出実入り搬入 コンテナ番号</td>
+  <td>空バンPICK Booking番号</td>
+  <td>卸し時</td>
+  <td>積み時</td>
+  <td>予約日時</td>
+  <td>更新</td>
+  <td>削除</td>
+  </tr>
+<% if @bookings.present?%>
+  <% @bookings.each do |booking| %>
+      <tr>
+        <th><%= booking.booking_code%></th>
+        <td><%= booking.imp_cntr_num%></td>
+        <td><%= booking.exp_cntr_num%></td>
+        <td><%= booking.exp_booking_num%></td>
+        <td><%= booking.off_action%></td>
+        <td><%= booking.on_action%></td>
+        <td><%= booking.slot.date.strftime("%Y年%m月%d日") %>の<%= booking.slot.start_time %>から<%= booking.slot.end_time %></td>
+        <td><%= link_to '更新', edit_booking_path(booking.id), method: :get %></td>
+        <td><%= link_to '削除', booking_path(booking.id), method: :delete %></td>
+      </tr>
+  <% end %>
+<% else %>
+ 予約はありません
+<% end %>
 
-ここには個人のBooking一覧を入れたい
-
+</table>
 
 
 

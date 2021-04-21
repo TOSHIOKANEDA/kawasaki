@@ -1,9 +1,11 @@
 <%= render "layouts/header"%>
 
-
-<p><%= link_to "Booking管理", new_slot_path %></p>
-<p><%= link_to "User管理", users_path %></p>
-<p><%= link_to "電源ON", power_slots_path(turn: "on"), method: :put %></p>
-<p><%= link_to "電源OFF", power_slots_path(turn: "off"), method: :put %></p>
-
+<div class="field_admin">
+  <div class="field_admin_menu"><%= link_to "Booking管理", new_slot_path %></div>
+  <div class="field_admin_menu"><%= link_to "User管理", users_path %></div>
+  <div class="field_admin_menu">
+    <%= link_to "電源ON", power_slots_path(turn: "on"), method: :put %>
+    <%= link_to "電源OFF", power_slots_path(turn: "off"), method: :put %>
+  </div>
+</div>
 <%= render "layouts/footer"%>

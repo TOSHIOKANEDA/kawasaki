@@ -1,7 +1,7 @@
 class BookingsController < ApplicationController
   before_action :set_params, only: [:confirm, :create]
   before_action :find_params, only: [:edit, :show, :update, :destroy]
-  before_action :find_available_slots, only: [:full_booking, :new, :create]
+  before_action :find_available_slots, only: [:new, :create, :edit]
   before_action :authenticate_user!
 
   def admin
@@ -25,6 +25,9 @@ class BookingsController < ApplicationController
     @booking = Booking.new
     @imp_val = ""
     @exp_val = ""
+  end
+
+  def full
   end
 
   def confirm
@@ -66,7 +69,7 @@ class BookingsController < ApplicationController
   private
 
   def booking_params
-    params.require(:booking).permit(:imp_cntr_num, :exp_cntr_num, :off_action, :on_action, :slot_id).merge(user_id: current_user.id)
+    params.require(:booking).permit(:exp_booking_num, :imp_cntr_num, :exp_cntr_num, :off_action, :on_action, :slot_id).merge(user_id: current_user.id)
   end
 
   def update_params
@@ -81,14 +84,10 @@ class BookingsController < ApplicationController
     @booking = Booking.find(params[:id])
   end
 
-  def full_booking
-    redirect_to root_path if @slots.blank?
-  end
-
   def find_available_slots
     @slots = Slot.where(full_status: 0)
     unless @slots.present?
-      redirect_to root_path
+      redirect_to full_bookings_path
       p "もう予約できる枠がありません"
     end
   end

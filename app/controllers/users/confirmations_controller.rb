@@ -23,8 +23,9 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
   #   super(resource_name)
   # end
 
-  # The path used after confirmation.
-  # def after_confirmation_path_for(resource_name, resource)
-  #   super(resource_name, resource)
-  # end
+  # Gmail登録後ここのコメントアウトを外す。The path used after confirmation.
+  def after_confirmation_path_for(resource_name, resource)
+    sign_in(resource)
+    new_booking_path
+  end
 end
