@@ -9,21 +9,17 @@
   <span>積み時</span>
     <%= f.select :on_action, options_for_select(Booking.on_actions.keys), { prompt: "積み時の種別を選択してください" }, required: true, class: "new_box", id: "loading_select" %>
     <div id="loading_box_1">
-      <%= f.text_field :exp_booking_num, class: "new_box", id: "bkg_box"%>
+      <%= f.text_field :exp_booking_num, value: @exp_booking_val, class: "new_box", id: "bkg_box"%>
     </div>
 
     <div id="loading_box_2">
-      <%= f.text_field :exp_cntr_num, class: "new_box", id: "cntr_box"%>
+      <%= f.text_field :exp_cntr_num, value: @exp_cntr_val, class: "new_box", id: "cntr_box"%>
     </div>
   </div>  
 
   <div class="field_new">
     <span>時間帯</span>
     <%= f.collection_select :slot_id, @slots, :id, :date, {prompt: "日付を選択してください"}, class: "new_box" %>
-  </div>
-
-  <div class="field_new">
-     <%= f.submit "確認画面へ"%>
   </div>
 
 </div>

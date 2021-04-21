@@ -31,5 +31,9 @@ class ApplicationController < ActionController::Base
   def authorized_user(user_authority)
     redirect_to new_user_session_path unless user_authority == 9
   end
+
+  def identical_user(user_id)
+    redirect_to new_user_session_path unless user_id == current_user.id
+  end
   
 end

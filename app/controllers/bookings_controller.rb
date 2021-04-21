@@ -29,6 +29,7 @@ class BookingsController < ApplicationController
   end
 
   def destroy
+    identical_user(@booking.user_id) unless current_user.authority_before_type_cast == 9
     if @booking.delete
       update_full_status(@booking.slot_id)
       redirect_to root_path
@@ -40,7 +41,8 @@ class BookingsController < ApplicationController
   def new
     @booking = Booking.new
     @imp_val = ""
-    @exp_val = ""
+    @exp_cntr_val = ""
+    @exp_booking_val = ""
   end
 
   def full
@@ -69,6 +71,7 @@ class BookingsController < ApplicationController
   end
 
   def update
+    identical_user(@booking.user_id) unless current_user.authority_before_type_cast == 9
     if @booking.update(update_params)
       p 'OK'
       redirect_to booking_path(id: @booking.id) 
@@ -78,8 +81,10 @@ class BookingsController < ApplicationController
   end
 
   def edit
+    identical_user(@booking.user_id) unless current_user.authority_before_type_cast == 9
     @imp_val = @booking.imp_cntr_num
-    @exp_val = @booking.exp_cntr_num
+    @exp_cntr_val = @booking.exp_cntr_num
+    @exp_booking_val = @booking.exp_booking_num
   end
 
   private
