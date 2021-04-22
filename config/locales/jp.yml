@@ -1,0 +1,10 @@
+ja:
+  activerecord:
+    attributes:
+      booking:
+        imp_cntr_num: 輸入コンテナ
+        exp_cntr_num: 輸出コンテナ
+        exp_booking_num: 輸出ブッキング
+    errors:
+      messages:
+        invalid_cntr_num: 番号に該当がありません

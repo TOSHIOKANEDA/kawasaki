@@ -26,6 +26,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    Booking.where(user_id: @user.id).destroy_all
     if @user.delete
       redirect_to admin_bookings_path
     else

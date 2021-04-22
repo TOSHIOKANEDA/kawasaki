@@ -48,21 +48,23 @@ class BookingsController < ApplicationController
   end
 
   def confirm
-    render :new if @booking.invalid?
+    if @booking.invalid?
+    redirect_to new_booking_path flash: { error: @booking.errors.full_messages }
+    end
   end
 
   def create
     @booking.booking_code = @booking.random_string
     if params[:back]
       p "OK！"
-      render :new
+      redirect_to new_booking_path
     elsif @booking.slot.full_status == 0
       @booking.save
       update_full_status(@booking.slot_id)
       redirect_to booking_path(@booking.id)
     else
       p "エラー！"
-      render :new
+      redirect_to new_booking_path
     end
   end
 
@@ -118,5 +120,6 @@ class BookingsController < ApplicationController
     find_params
     identical_user(@booking.user_id) unless current_user.authority_before_type_cast == 9
   end
+
 
 end
