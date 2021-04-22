@@ -2,18 +2,21 @@
 
 <div class="field_admin">
   <ul class="field_admin_menu">
-    Booking関連
-    <li><%= link_to "Booking管理", new_slot_path %></li>
-    <li><%= link_to "Excel出力", booking_down_load_bookings_path(@bookings, format: :xlsx) %></li>
+    <span>Booking関連</span>
+    <li><%= link_to "Booking管理", new_slot_path ,class: "submit_button_admin"%></li>
+    <li><%= link_to "Excel出力", booking_down_load_bookings_path(@bookings, format: :xlsx),class: "submit_button_admin" %></li>
   </ul>
   <ul class="field_admin_menu">
-    User関連
-    <li><%= link_to "User管理", users_path %></li>
+    <span>User関連</span>
+    <li><%= link_to "User管理", users_path,class: "submit_button_admin" %></li>
   </ul>
   <ul class="field_admin_menu">
-    スイッチ
-    <li><%= link_to "電源ON", power_slots_path(turn: "on"), method: :put %></li>
-    <li><%= link_to "電源OFF", power_slots_path(turn: "off"), method: :put %></li>
+    <span>スイッチ</span>
+    <%if Slot.power_off.present?%>
+    <li><%= link_to "電源ON", power_slots_path(turn: "on"), method: :put,class: "submit_button_admin" %></li>
+    <%else%>
+    <li><%= link_to "電源OFF", power_slots_path(turn: "off"), method: :put,class: "submit_button_admin" %></li>
+    <%end%>
   </ul>
 </div>
 <%= render "layouts/footer"%>

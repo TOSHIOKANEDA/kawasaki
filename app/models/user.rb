@@ -6,7 +6,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,:confirmable
 
-  enum authority: {"一般":0, "特別":1, "管理者":9}
+  enum authority: {"一般":0, "特別":1, "ラウンド":2, "管理者":9}
 
   def phone=(value)
     if value.is_a?(String) || value.include?("ー") || value.include?("-") 

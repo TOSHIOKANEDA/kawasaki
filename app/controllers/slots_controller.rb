@@ -5,7 +5,7 @@ class SlotsController < ApplicationController
 
   def show
     if view_context.available_num(params[:id].to_i)- @slot.max_num == 0
-      p "Bookingはありません"
+      flash[:alert] = "この予約枠内の予約はゼロ件です"
       redirect_to new_slot_path
     end
     @bookings = Booking.where(slot_id: @slot.id)
@@ -20,32 +20,32 @@ class SlotsController < ApplicationController
   def create
     @slot = Slot.new(slot_params)
     if @slot.save
-      p "無事保存"
+      flash[:notice] = "予約枠を作成しました"
       redirect_to new_slot_path
     else
-      p "失敗"
       redirect_to new_slot_path
+      flash[:alert] = "予約枠の作成に失敗しました"
     end
   end
 
   def update
     if @slot.update(slot_params)
-      p "無事保存"
       update_full_status(@slot.id)
       redirect_to new_slot_path
+      flash[:notice] = "予約枠の内容を変更しました"
     else
-      p "失敗"
       redirect_to new_slot_path
+      flash[:alert] = "予約枠の内容変更に失敗しました"
     end
   end
 
   def destroy
     if @slot.destroy
-      p "無事削除"
       redirect_to new_slot_path
+      flash[:notice] = "予約枠の削除をしました"
     else
-      p "失敗"
       redirect_to new_slot_path
+      flash[:alert] = "予約枠の削除に失敗しました"
     end
   end
 
@@ -56,17 +56,21 @@ class SlotsController < ApplicationController
   def power
     if params[:turn] == "off"
       Slot.update_all(power_switch: 1)
+      redirect_to admin_bookings_path
+      flash[:notice] = "全ての予約枠を表示OFFにしました"
     elsif params[:turn] == "on"
       Slot.update_all(power_switch: 0)
+      redirect_to admin_bookings_path
+      flash[:notice] = "全ての予約枠を表示ONにしました"
     else
-      p "失敗"
       redirect_to new_slot_path
+      flash[:alert] = "予約枠の表示設定変更に失敗しました"
     end
   end
 
   def update_date_all
     original_slots =  params[:slots].reject!{ |key, value| value == "0" }
-    @slots = Slot.where(id: original_slots.keys).update_all(date: params[:to_date]) if original_slots.present?
+    Slot.where(id: original_slots.keys).update_all(date: params[:to_date]) if original_slots.present?
     redirect_to new_slot_path
   end
 

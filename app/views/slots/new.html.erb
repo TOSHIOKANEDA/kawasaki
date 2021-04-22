@@ -24,10 +24,10 @@
       </tr>
       <% @slots.each do |slot| %>
         <tr>
-          <th><%= slot.power_switch%></th>
+          <th><%= slot.power_switch_i18n%></th>
           <td><%= f.check_box "slots[#{slot.id}]"%></td>
           <td><%= slot.date%></td>
-          <td><%= slot.access_level%></td>
+          <td><%= slot.access_level_i18n%></td>
           <td><%= slot.max_num%></td>
           <td><%= available_num slot %></td>
           <td><%= slot.start_time%></td>

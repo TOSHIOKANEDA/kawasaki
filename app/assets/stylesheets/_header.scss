@@ -1,3 +1,17 @@
+%header-padding{
+  padding: 15px 20px;
+}
+
+@mixin caution {
+  float: left;
+  margin-left: 10px;
+  color: white;
+  background-color: black;
+  font-size: 15px;
+  font-weight: bold;
+  height: 20px;  
+}
+
 #header {
   height: 100px;
   margin: 0;
@@ -11,6 +25,8 @@
     white-space: nowrap;
   }
 }
+
+
 
 
 
@@ -40,7 +56,6 @@
     li {
       display: inline-block;
       a {
-        padding: 6px 10px;
         color: #777;
         line-height: 20px;
         text-decoration: none;
@@ -52,19 +67,24 @@
 .header-nav {
   .navbar-main {
     background-color: #273F79;
-    border: 0;
-    min-height: 38px;
-    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    font-size: 15px;
+    height: 50px;
+    .notice {
+      @include caution;
+      @extend %header-padding;
+    }
+    .alert {
+      @include caution;
+      @extend %header-padding;
+      color: red;
+      background-color: white;
+    }
+
     li {
       float: right;
-      color: #fff;
       list-style: none;
-      padding: 15px 20px;
+      @extend %header-padding;
       a {
-        padding: 6px 10px;
         color: #fff;
-        line-height: 20px;
         text-decoration: none;
       }
     }
