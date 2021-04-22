@@ -20,7 +20,7 @@ class BookingsController < ApplicationController
       end
     else
       redirect_to admin_bookings_path
-      p "Bookingはありません"
+      flash[:alert] = "予約はゼロ件です"
     end
   end
 
@@ -32,8 +32,9 @@ class BookingsController < ApplicationController
     if @booking.delete
       update_full_status(@booking.slot_id)
       redirect_to root_path
+      flash[:notice] = "予約を削除しました"
     else
-      p "失敗"
+      flash[:alert] = "エラーにより削除できませんでした"
     end
   end
 
@@ -46,7 +47,10 @@ class BookingsController < ApplicationController
 
   def confirm
     if @booking.invalid?
-    redirect_to new_booking_path flash: { error: @booking.errors.full_messages }
+      redirect_to new_booking_path
+      @booking.errors.full_messages.each_with_index do |msg, index|
+        flash[:alert] = msg
+      end
     end
   end
 
@@ -61,8 +65,8 @@ class BookingsController < ApplicationController
       redirect_to booking_path(@booking.id)
       flash[:notice] = "予約完了しました"
     else
-      p "エラー！"
       redirect_to new_booking_path
+      flash[:alert] = "エラーにより保存できませんでした"
     end
   end
 
@@ -71,10 +75,10 @@ class BookingsController < ApplicationController
 
   def update
     if @booking.update(update_params)
-      p 'OK'
+      flash[:notice] = "変更完了しました"
       redirect_to booking_path(id: @booking.id) 
     else
-      p '失敗'
+      flash[:alert] = "エラーにより変更できませんでした"
     end
   end
 

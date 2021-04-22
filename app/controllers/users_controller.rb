@@ -22,15 +22,16 @@ class UsersController < ApplicationController
       if @user.update(user_params)
         p 'OK'
         redirect_to user_path(id: current_user.id) 
+        flash[:notice] = "ユーザー登録変更をしました"
       else
-        p '失敗'
+        flash[:alert] = "ユーザー登録の変更に失敗しました"
       end
     else
       if @user.update(authorizing_control_params)
-        p 'OK'
         redirect_to users_path
+        flash[:notice] = "ユーザー登録変更をしました(管理者)"
       else
-        p '失敗'
+        flash[:alert] = "ユーザー登録の変更に失敗しました(管理者)"
       end
     end
   end
@@ -39,8 +40,9 @@ class UsersController < ApplicationController
     Booking.where(user_id: @user.id).destroy_all
     if @user.delete
       redirect_to admin_bookings_path
+      flash[:notice] = "ユーザー登録を削除しました(管理者)"
     else
-      p "失敗"
+      flash[:alert] = "ユーザー登録削除に失敗しました(管理者)"
     end
   end
 
