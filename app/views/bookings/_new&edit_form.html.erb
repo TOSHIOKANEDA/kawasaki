@@ -19,11 +19,13 @@
 
   <div class="field_new">
     <span>時間帯</span>
-    <%= f.collection_select :slot_id, @slots, :id, :date, {prompt: "日付を選択してください"}, class: "new_box" %>
-  </div>
-
-  <div class="field_new">
-     <%= f.submit "確認画面へ"%>
+    <% if current_user.authority_before_type_cast == 0%>
+    <%= f.select :slot_id, normal, {prompt: "日付を選択してください"}, class: "new_box" %>
+    <% elsif current_user.authority_before_type_cast == 1%>
+    <%= f.select :slot_id, vip,{prompt: "日付を選択してください"}, class: "new_box" %>
+    <% elsif current_user.authority_before_type_cast == 2%>
+    <%= f.select :slot_id, dr, {prompt: "日付を選択してください"}, class: "new_box" %>
+    <% end %>
   </div>
 
 </div>

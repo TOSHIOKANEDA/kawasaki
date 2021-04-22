@@ -21,6 +21,14 @@
     <%= f.email_field :email, class: "email_field", value: @user.email %></p>
     <i class="fas fa-envelope"></i>
   </div>
+
+  <% if current_user.authority_before_type_cast == 9%>
+  <div class="user_form">
+    <%= f.select :authority, options_for_select(User.authorities.keys), {},class: "select_field" %>
+    <i class="fas fa-key"></i>
+  </div>
+  <% end %>
+
   <div class="user_form">
     <%= f.submit "確定", class: "submit_button"%>
   </div>

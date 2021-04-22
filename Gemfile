@@ -72,7 +72,6 @@ gem "font-awesome-sass", "< 5.0.13"
 gem 'gon'
 gem 'sassc-rails'
 gem 'sassc', '~> 2.1.0'
-# gem 'mini_racer', '~> 0.1.14'
 gem 'therubyracer'
 gem 'deep_cloneable', '~> 3.1.0'
 gem 'caxlsx_rails'

@@ -12,8 +12,6 @@ class SlotsController < ApplicationController
   end
 
   def new
-    # Bookingが入っているSlotを取り出している
-    # ids = Booking.pluck(:slot_id).uniq
     @slot = Slot.new
     @slots = Slot.all
     @current_vol = 1

@@ -3,13 +3,13 @@ class BookingsController < ApplicationController
   before_action :find_params, only: [:edit, :show, :update, :destroy]
   before_action :find_available_slots, only: [:new, :create, :edit]
   before_action :authenticate_user!
+  before_action :authorizer, only: [:admin, :booking_down_load]
+  before_action :identifier, only: [:edit, :update, :destroy, :show]
 
   def admin
-    authorized_user(current_user.authority_before_type_cast)
   end
 
   def booking_down_load
-    authorized_user(current_user.authority_before_type_cast)
     @bookings = Booking.all
     @slots = Slot.all
     if @bookings.present?
@@ -39,29 +39,29 @@ class BookingsController < ApplicationController
 
   def new
     @booking = Booking.new
-    @imp_val = ""
-    @exp_val = ""
   end
 
   def full
   end
 
   def confirm
-    render :new if @booking.invalid?
+    if @booking.invalid?
+    redirect_to new_booking_path flash: { error: @booking.errors.full_messages }
+    end
   end
 
   def create
     @booking.booking_code = @booking.random_string
     if params[:back]
       p "OK！"
-      render :new
+      redirect_to new_booking_path
     elsif @booking.slot.full_status == 0
       @booking.save
       update_full_status(@booking.slot_id)
       redirect_to booking_path(@booking.id)
     else
       p "エラー！"
-      render :new
+      redirect_to new_booking_path
     end
   end
 
@@ -78,8 +78,6 @@ class BookingsController < ApplicationController
   end
 
   def edit
-    @imp_val = @booking.imp_cntr_num
-    @exp_val = @booking.exp_cntr_num
   end
 
   private
@@ -101,11 +99,24 @@ class BookingsController < ApplicationController
   end
 
   def find_available_slots
-    @slots = Slot.where(full_status: 0)
-    unless @slots.present?
-      redirect_to full_bookings_path
-      p "もう予約できる枠がありません"
+    #booking.helper内が空かどうかで分岐
+    if current_user.authority_before_type_cast == 1
+      redirect_to full_bookings_path unless view_context.vip.present?
+    elsif current_user.authority_before_type_cast == 2
+      redirect_to full_bookings_path unless view_context.dr.present?
+    elsif current_user.authority_before_type_cast == 0
+      redirect_to full_bookings_path unless view_context.normal.present?
     end
   end
+
+  def authorizer
+    authorized_user(current_user.authority_before_type_cast)
+  end
+
+  def identifier
+    find_params
+    identical_user(@booking.user_id) unless current_user.authority_before_type_cast == 9
+  end
+
 
 end

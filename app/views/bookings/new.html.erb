@@ -1,18 +1,12 @@
 <%= render "layouts/header"%>
 
 <%= form_with model: @booking, local: true, url: {action: 'confirm'} do |f| %>
-  <% if @booking.errors.any? %>
-      <h2><%= pluralize(booking.errors.count, "error") %> prohibited this booking from being saved:</h2>
-
-      <ul>
-      <% @booking.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
 
   <%= render partial: "new&edit_form", locals: { f: f } %>
+
+  <div class="field_new">
+     <%= f.submit "確認"%>
+  </div>
 
 <% end %>
 
