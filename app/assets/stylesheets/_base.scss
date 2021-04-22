@@ -23,8 +23,16 @@
 
 .field_admin {
   display: flex;
+  margin: 20px;
+  span {
+    font-size: 20px;
+    font-weight: bold;
+  }
   .field_admin_menu {
     width : calc(100% / 3);
+    li {
+     margin: 50px 0;
+    }
   }
 }
 

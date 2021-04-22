@@ -7,8 +7,8 @@
   <%= f.select :start_time, options_for_select(Slot.time_lists.keys), {required: true}, class: "select_box" %>~
   <%= f.select :end_time, options_for_select(Slot.time_lists.keys), {required: true}, class: "select_box" %>
   <span>利用者権限</span>
-  <%= f.select :access_level, options_for_select(Slot.access_levels.keys), {required: true}, class: "select_box" %>
+  <%= f.select :access_level, options_for_select_from_enum(Slot, :access_level), {required: true}, class: "select_box" %>
   <span>表示ON/OFF</span>
-  <%= f.select :power_switch, options_for_select(Slot.power_switches.keys), {required: true}, class: "select_box" %>
+  <%= f.select :power_switch, options_for_select_from_enum(Slot, :power_switch), {required: true}, class: "select_box" %>
   <%= f.submit "確定", class: "submit"%>
 </div>

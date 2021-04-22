@@ -56,8 +56,10 @@ class SlotsController < ApplicationController
   def power
     if params[:turn] == "off"
       Slot.update_all(power_switch: 1)
+      redirect_to admin_bookings_path
     elsif params[:turn] == "on"
       Slot.update_all(power_switch: 0)
+      redirect_to admin_bookings_path
     else
       p "失敗"
       redirect_to new_slot_path
@@ -66,7 +68,7 @@ class SlotsController < ApplicationController
 
   def update_date_all
     original_slots =  params[:slots].reject!{ |key, value| value == "0" }
-    @slots = Slot.where(id: original_slots.keys).update_all(date: params[:to_date]) if original_slots.present?
+    Slot.where(id: original_slots.keys).update_all(date: params[:to_date]) if original_slots.present?
     redirect_to new_slot_path
   end
 

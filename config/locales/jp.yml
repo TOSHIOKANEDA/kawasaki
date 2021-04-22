@@ -1,4 +1,13 @@
 ja:
+  enums:
+    slot:
+      power_switch:
+        power_on: 電源ON
+        power_off: 電源OFF
+      access_level:
+        general_access: 一般権限
+        vip_access: VIP権限
+        dr_access: ラウンド権限
   activerecord:
     attributes:
       booking:

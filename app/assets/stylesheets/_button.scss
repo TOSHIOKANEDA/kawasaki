@@ -1,0 +1,26 @@
+@mixin original_button {
+  margin-top: 45px;
+  width: 370px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 12px 0;
+  color: #fff;
+  background-color: #273F79;
+  text-shadow: none;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.submit_button {
+  @include original_button;
+}
+
+.submit_button_admin {
+  @include original_button;
+  min-width: 100%;
+  text-decoration: none;
+  margin: 20px;
+  padding: 10px 20px;
+}
