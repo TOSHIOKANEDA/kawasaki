@@ -36,7 +36,19 @@
   }
 }
 
+.user_separation {
+  display: flex;
+  margin: 0 10px;
+  justify-content: space-around;
+  .user_separation-inbetween {
+    min-width: 32%;
+    span {
+      font-size: 20px;
+      font-weight: bold;
+    }
+  }
 
+}
 
 .user_base {
   position: relative;

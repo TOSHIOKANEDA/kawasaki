@@ -1,47 +1,39 @@
 <%= render "layouts/header"%>
+<div class="user_separation">
+  <div class="user_separation-inbetween">
+  <span>一般USERリスト</span>
+    <table>
+      <%= render partial: "index-head"%>
+      <% if @normal_users.present?%>
+        <% @normal_users.each do |user| %>
+          <%= render partial: "index-list", locals: { user: user } %>
+        <% end %>
+      <% end %>
+    </table>
+  </div>
 
-<table>
-一般User
-  <tr>
-  <th>お名前</th>
-  <td>会社名</td>
-  <td>電話番号</td>
-  <td>更新</td>
-  <td>削除</td>
-  </tr>
-<% if @normal_users.present?%>
-  <% @normal_users.each do |user| %>
-    <tr>
-      <th><%= user.name%></th>
-      <td><%= user.company%></td>
-      <td><%= user.phone%></td>
-      <td><%= link_to '更新', edit_user_path(user.id), method: :get %></td>
-      <td><%= link_to '削除', user_path(user.id), method: :delete %></td>
-    </tr>
-  <% end %>
-<% end %>
-</table>
+  <div class="user_separation-inbetween">
+  <span>特別USERリスト</span>
+    <table>
+    <%= render partial: "index-head"%>
+      <% if @vip_users.present?%>
+        <% @vip_users.each do |user| %>
+          <%= render partial: "index-list", locals: { user: user } %>
+        <% end %>
+      <% end %>
+    </table>
+  </div>
 
-<table>
-Special User
-  <tr>
-  <th>お名前</th>
-  <td>会社名</td>
-  <td>電話番号</td>
-  <td>更新</td>
-  <td>削除</td>
-  </tr>
-<% if @special_users.present?%>
-  <% @special_users.each do |user| %>
-    <tr>
-      <th><%= user.name%></th>
-      <td><%= user.company%></td>
-      <td><%= user.phone%></td>
-      <td><%= link_to '更新', edit_user_path(user.id), method: :get %></td>
-      <td><%= link_to '削除', user_path(user.id), method: :delete %></td>
-    </tr>
-  <% end %>
-<% end %>
-</table>
-
+  <div class="user_separation-inbetween">
+  <span>ラウンドUSERリスト</span>
+    <table>
+    <%= render partial: "index-head"%>
+      <% if @dr_users.present?%>
+        <% @dr_users.each do |user| %>
+          <%= render partial: "index-list", locals: { user: user } %>
+        <% end %>
+      <% end %>
+    </table>
+  </div>
+</div>
 <%= render "layouts/footer"%>

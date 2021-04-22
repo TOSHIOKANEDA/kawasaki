@@ -7,7 +7,8 @@ class UsersController < ApplicationController
   def index
     # User登録一覧を表示
     @normal_users = User.where(authority: 0)
-    @special_users = User.where(authority: 1)
+    @vip_users = User.where(authority: 1)
+    @dr_users = User.where(authority: 2)
   end
 
   def show
