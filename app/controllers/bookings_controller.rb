@@ -53,12 +53,13 @@ class BookingsController < ApplicationController
   def create
     @booking.booking_code = @booking.random_string
     if params[:back]
-      p "OK！"
+      flash[:notice] = "戻りました"
       redirect_to new_booking_path
     elsif @booking.slot.full_status == 0
       @booking.save
       update_full_status(@booking.slot_id)
       redirect_to booking_path(@booking.id)
+      flash[:notice] = "予約完了しました"
     else
       p "エラー！"
       redirect_to new_booking_path

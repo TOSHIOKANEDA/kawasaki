@@ -11,6 +11,12 @@
 
   <div class="header-nav">
       <div class="navbar-main">
+      <% if notice.present?%>
+        <div class="notice"><%= notice %></div>
+      <% end %>
+      <% if alert.present?%>
+        <div class="alert"><%= alert %></div>
+      <% end %>
         <% if user_signed_in? && current_user.authority_before_type_cast == 9 %>
         <li><%= link_to '管理画面に戻る', admin_bookings_path, method: :get %></li>
         <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
