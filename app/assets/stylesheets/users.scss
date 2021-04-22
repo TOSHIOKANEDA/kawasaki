@@ -70,6 +70,12 @@
       @include field;
     }
 
+    .select_field{
+      @include field;
+      height: 45px;
+      width: 370px;
+    }
+
     .plain_field {
       @include field;
       margin-bottom: 15px;

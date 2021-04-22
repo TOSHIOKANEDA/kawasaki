@@ -39,9 +39,6 @@ class BookingsController < ApplicationController
 
   def new
     @booking = Booking.new
-    @imp_val = ""
-    @exp_cntr_val = ""
-    @exp_booking_val = ""
   end
 
   def full
@@ -81,9 +78,6 @@ class BookingsController < ApplicationController
   end
 
   def edit
-    @imp_val = @booking.imp_cntr_num
-    @exp_cntr_val = @booking.exp_cntr_num
-    @exp_booking_val = @booking.exp_booking_num
   end
 
   private
@@ -105,10 +99,13 @@ class BookingsController < ApplicationController
   end
 
   def find_available_slots
-    @slots = Slot.where(full_status: 0)
-    unless @slots.present?
-      redirect_to full_bookings_path
-      p "もう予約できる枠がありません"
+    #booking.helper内が空かどうかで分岐
+    if current_user.authority_before_type_cast == 1
+      redirect_to full_bookings_path unless view_context.vip.present?
+    elsif current_user.authority_before_type_cast == 2
+      redirect_to full_bookings_path unless view_context.dr.present?
+    elsif current_user.authority_before_type_cast == 0
+      redirect_to full_bookings_path unless view_context.normal.present?
     end
   end
 

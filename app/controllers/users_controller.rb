@@ -17,11 +17,20 @@ class UsersController < ApplicationController
   end
 
   def update
-    if @user.update(user_params)
-      p 'OK'
-      redirect_to user_path(id: current_user.id) 
+    unless current_user.authority_before_type_cast == 9
+      if @user.update(user_params)
+        p 'OK'
+        redirect_to user_path(id: current_user.id) 
+      else
+        p '失敗'
+      end
     else
-      p '失敗'
+      if @user.update(authorizing_control_params)
+        p 'OK'
+        redirect_to users_path
+      else
+        p '失敗'
+      end
     end
   end
 
@@ -42,6 +51,10 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :company, :phone, :email)
+  end
+
+  def authorizing_control_params
+    params.require(:user).permit(:name, :company, :phone, :email, :authority)
   end
 
   def authorizer
