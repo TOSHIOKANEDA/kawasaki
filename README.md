@@ -1,57 +1,101 @@
-<終わったこと>
-1. turbokinkを削除した
-2. Gitの設定
+# DataBase Construction
 
-<確認すること>
-1. １日あたりの台数現在の台数を確認する
-  コンテナ本数Total：500~600 (AM: PM: 偏りはない。１０時くらいには並びが消える。お昼時間１１時。CY内にはトラックを入れておかない。
-  15時頃にトラックが再度増えていく)
-  ニトリの輸入６割（Totalでいうと輸入７割）、ユニクロの輸入１割ほど。
-  
-  おろしどり本数：空バン返却の３割がおろしどり
+## 1.Bookings
+| Column               | Type        | Option             |
+|:--------------------:|:-----------:|:------------------:|
+| user_id              | bigint      | foreign_key: true  |
+| slot_id              | bigint      | foreign_key: true  |
+| booking_code         | string      | null:false         |
+| on_imp_laden_pick    | string      | null:true          |
+| on_exp_booking_num   | string      | null:true          |
+| off_exp_laden_in     | string      | null:true          |
+| off_imp_empty_return | string      | null:true          |
+| off_action           | integer     | null:false         |
+| on_action            | integer     | null:false         |
+| created_at           | datetime    | null:false         |
+| updated_at           | datetime    | null:false         |
+
+### Association
+- belongs_to :slot
+- belongs_to :user
 
 
-2. 予約確認場所を確認する
-  インゲートで予約確認（屋根あり）。
-3. おろしどりをするのに、現状必要な条件や現行の流れを確認する
-  突然来ておろしどりをさせる。
-4. 事前に知りたい情報を、最低限欲しい情報と出来れば欲しい情報とで確認する
-  どのコンテナをいつ取りに来るかを知りたい。お客さん（ドレイ会社さん）の利用率。
-5. おろしどりをする種別、おろしどりの作業手順
-  全種類。
-6. おろしどり以外に必要な機能やあったら嬉しい機能
-  （１）特別搬出
-  （２）船社負担の回送
-7. User登録は、書面での誓約書を郵送 or Fax or 持ち込み
-  OK
-8. インゲートのOnline環境
-  バーコードリーダーで確認
-9. おろしどりマッチング機能についてどうか？
-10. 実入り搬入の空バンPICKのパターンなら、〇〇台まで、空バン返却の実入りPICKなら〇〇台まで、みたいな制限はあるか
-  制限なし
-11. Userさんへの登録呼びかけは、秘密保持関係があるので１から集めていくがOKか
+## 2.Slots
+| Column               | Type        | Option             |
+|:--------------------:|:-----------:|:------------------:|
+| max_num              | integer     | null:false         |
+| date                 | date        | null:false         |
+| access_level         | integer     | defalut: 0         |
+| power_switch         | integer     | default: 0         |
+| full_status          | integer     | default: 0         |
+| start_time           | string      | null:false         |
+| end_time             | string      | null:false         |
+| created_at           | datetime    | null:false         |
+| updated_at           | datetime    | null:false         |
 
-12. Webアプリケーションの開発・保守以外にも運営拡大についても、コンサルタントしていくような契約でいいか
-  OK
-13. 予約完成仮ゲート：2022年のくらい秋には  
-14. 作業員さんの事前予約に対する反応
-  協力的に作業ができる。
+### Association
+- has_many :bookings
 
-＝＝ここからは１月９日に聞きそびれた内容＝＝
 
-15. インゲート処理時に、通常インゲートオペレーターが確認する内容
-16. 実入り搬入時のコンテナ番号以外に、返却するコンテナやPICKや搬入したいB/L番号は必要か？
-17. もし実入りPICKだけなら、輸入返却＆PICKのおろしどりしかシステム導入は不要？
-18. もし輸出のおろしどりをするのであれば、輸出もシステム登録させて事前に把握することでのターミナル側でのメリットは何か？
-19. 二個積み時の対応方法
+## 3.Users
+| Column                 | Type        | Option                   |
+|:----------------------:|:-----------:|:------------------------:|
+| email                  | string      | null:false, unique: true |
+| encrypted_password     | string      | null:false               |
+| reset_password_token   | string      | unique: true             |
+| reset_password_sent_at | datetime    |                          |
+| remember_created_at    | datetime    |                          |
+| confirmation_token     | string      | unique: true             |
+| confirmed_at           | datetime    |                          |
+| confirmation_sent_at   | datetime    |                          |
+| unconfirmed_email      | string      |                          |
+| name                   | string      | null:false               |
+| company                | string      | null:false               |
+| phone                  | string      | null:false               |
+| authority              | integer     | default:0                |
+| certificate            | string      | default: "0"             |
+| order_num              | integer     | default: 0               |
+| created_at             | datetime    | null:false               |
+| updated_at             | datetime    | null:false               |
 
-DataBase設計
+### Association
+- has_many :bookings
 
-User
-Slot
-Booking
-MyDriver
 
+# Enum Construction
+
+## 1.Bookings
+<dl>
+  <dt>off_action:</dt>
+  <dd>"空バン返却":0</dd>
+  <dd>"実入り搬入":1</dd>
+  <dt>on_action:</dt>
+  <dd>"実入りPICK":0</dd>
+  <dd>"空バンPICK":1</dd>
+</dl> 
+`off_actionともon_actionとも、そのままbefore_type_castすることなくviewに出すことが多いのでenumにはstringを入れている`
+
+## 2.Slots
+<dl>
+  <dt>access_level:</dt>
+  <dd>general_access:0,</dd>
+  <dd>vip_access:1</dd>
+  <dd>dr_access:2</dd>
+</dl>
+<dl>
+  <dt>power_switch:</dt>
+  <dd>power_on:0,</dd>
+  <dd>power_off:1</dd>
+</dl>
+<dl>
+  <dt>time_list:</dt>
+  <dd>"08:00":0</dd>
+  <dd>"16:30":17</dd>
+</dl>
+`access_levelは分岐で使用できるようstringはやめて英文字で指定した。power_switchはpower_switch.power_offでpresent?できるのでhelperとgemを入れて英文で管理。日本語化はja.yml`
+
+
+ 
 利用者の流れ（トラック業者編）
 （１）User登録
 （２）Booking登録（時間帯、日にち、種別登録）

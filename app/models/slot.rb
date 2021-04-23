@@ -1,6 +1,5 @@
 class Slot < ApplicationRecord
   has_many :bookings, dependent: :destroy
-  # power_switchはpower_switch.power_offでpresent?できるのでhelperとgemを入れて英文で管理
   enum access_level: {general_access:0, vip_access:1, dr_access:2}
   enum power_switch: {power_on:0, power_off:1}
   enum time_list: {"08:00":0, "08:30":1, "09:00":2, "09:30":3, "10:00":4, "10:30":5, "11:00":6, "11:30":7,
