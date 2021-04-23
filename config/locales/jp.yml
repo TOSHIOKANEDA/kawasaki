@@ -11,9 +11,10 @@ ja:
   activerecord:
     attributes:
       booking:
-        imp_cntr_num: 輸入コンテナ
-        exp_cntr_num: 輸出コンテナ
-        exp_booking_num: 輸出ブッキング
+        on_imp_laden_pick: 輸入コンテナ
+        off_imp_empty_return: 返却となるコンテナ
+        off_exp_laden_in: 搬入予定の輸出コンテナ
+        on_exp_booking_num: 輸出ブッキング
     errors:
       messages:
         invalid_cntr_num: 番号に該当がありません

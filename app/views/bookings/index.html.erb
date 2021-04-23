@@ -2,7 +2,8 @@
 <table>
   <tr>
   <th>BookingCode</th>
-  <td>輸入コンテナ番号</td>
+  <td>輸入実入り搬出 コンテナ番号</td>
+  <td>輸入空バン返却 コンテナ番号</td>
   <td>輸出実入り搬入 コンテナ番号</td>
   <td>空バンPICK Booking番号</td>
   <td>卸し時</td>
@@ -15,9 +16,10 @@
   <% @bookings.each do |booking| %>
       <tr>
         <th><%= booking.booking_code%></th>
-        <td><%= booking.imp_cntr_num%></td>
-        <td><%= booking.exp_cntr_num%></td>
-        <td><%= booking.exp_booking_num%></td>
+        <td><%= booking.on_imp_laden_pick%></td>
+        <td><%= booking.on_exp_booking_num%></td>
+        <td><%= booking.off_exp_laden_in%></td>
+        <td><%= booking.off_imp_empty_return%></td>
         <td><%= booking.off_action%></td>
         <td><%= booking.on_action%></td>
         <td><%= booking.slot.date.strftime("%Y年%m月%d日") %>の<%= booking.slot.start_time %>から<%= booking.slot.end_time %></td>

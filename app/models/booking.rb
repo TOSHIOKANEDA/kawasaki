@@ -7,24 +7,25 @@ class Booking < ApplicationRecord
 
   VALID_CNTR_REGEX = /\A^[A-Z]{3}[UJZ]{1}[0-9]{7}$\z/
 
-  validates :imp_cntr_num, presence: true,
-  format: { with: VALID_CNTR_REGEX, message: :invalid_cntr_num  }
-
   validates :cntr_booking, presence: true
-  validates :exp_cntr_num, if: -> { exp_booking_num.blank? },
-  format: { with: VALID_CNTR_REGEX, message: :invalid_cntr_num  }
 
+  with_options format: { with: VALID_CNTR_REGEX, message: :invalid_cntr_num  } do
+    validates :on_imp_laden_pick, if: -> { on_exp_booking_num.blank? }
+    validates :off_imp_empty_return, if: -> { off_exp_laden_in.blank? }
+    validates :off_exp_laden_in, if: -> { off_imp_empty_return.blank? }
+  end
+  
   #Error内容はconfig/locales/jp.ymlに記述
+
+  def cntr_booking
+    off_exp_laden_in.presence or off_imp_empty_return.presence
+    on_imp_laden_pick.presence or on_exp_booking_num.presence
+  end
 
   def random_string(length = 5)
     a = [('A'..'Z'), ('0'..'9')].map { |i| i.to_a }.flatten
     random_string = (0...6).map { a[rand(a.length)] }.join
   end
 
-  def cntr_booking
-    exp_booking_num.presence or exp_cntr_num.presence
-  end
-
-  
 
 end

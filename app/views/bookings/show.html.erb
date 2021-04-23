@@ -5,14 +5,17 @@
   <div class="field_show">
   受付番号：<span><%= @booking.booking_code %></span>
   </div>
-  <% if @booking.imp_cntr_num.present?%>
-  <div class="field_show">卸し時のコンテナ番号:<span><%= @booking.imp_cntr_num %></span></div>
+  <% if @booking.off_imp_empty_return.present?%>
+  <div class="field_show">卸し時のコンテナ番号:<span><%= @booking.off_imp_empty_return %></span></div>
   <% end %>
-  <% if @booking.exp_cntr_num.present?%>
-  <div class="field_show">積み時のコンテナ番号：<span><%= @booking.exp_cntr_num %></span></div>
+  <% if @booking.off_exp_laden_in.present?%>
+  <div class="field_show">卸し時のコンテナ番号:<span><%= @booking.off_exp_laden_in %></span></div>
   <% end %>
-  <% if @booking.exp_booking_num.present?%>
-  <div class="field_show">積み時のBooking番号：<span><%= @booking.exp_booking_num %></span></div>
+  <% if @booking.on_imp_laden_pick.present?%>
+  <div class="field_show">積み時のコンテナ番号：<span><%= @booking.on_imp_laden_pick %></span></div>
+  <% end %>
+  <% if @booking.on_exp_booking_num.present?%>
+  <div class="field_show">積み時のBooking番号：<span><%= @booking.on_exp_booking_num %></span></div>
   <% end %>
   <div class="field_show">予約時間：<%= @booking.slot.date.strftime("%Y年%m月%d日") %>の<%= @booking.slot.start_time %>から<%= @booking.slot.end_time %></div>
   <div class="field_show">卸す時：<span><%= @booking.off_action %></span></div>
