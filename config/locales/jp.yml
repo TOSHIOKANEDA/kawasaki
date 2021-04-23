@@ -18,3 +18,4 @@ ja:
     errors:
       messages:
         invalid_cntr_num: 番号に該当がありません
+        same_cntr_num: 同一コンテナ番号
