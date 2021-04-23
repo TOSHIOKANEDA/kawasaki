@@ -3,8 +3,10 @@
 <table>
   <tr>
   <th>BookingCode</th>
-  <td>輸入コンテナ番号</td>
-  <td>輸出コンテナ番号</td>
+  <td>卸し時の実入り搬入コンテナ番号</td>
+  <td>卸し時の空バン返却コンテナ番号</td>
+  <td>積み時のBooking番号</td>
+  <td>積み時の輸入実入りコンテナ番号</td>
   <td>off_action</td>
   <td>on_action</td>
   <td>お名前</td>
@@ -16,8 +18,10 @@
 <% @bookings.each do |booking| %>
     <tr>
       <th><%= booking.booking_code%></th>
-      <td><%= booking.imp_cntr_num%></td>
-      <td><%= booking.exp_cntr_num%></td>
+      <td><%= booking.on_imp_laden_pick%></td>
+      <td><%= booking.on_exp_booking_num%></td>
+      <td><%= booking.off_exp_laden_in%></td>
+      <td><%= booking.off_imp_empty_return%></td>
       <td><%= booking.off_action%></td>
       <td><%= booking.on_action%></td>
       <td><%= booking.user.name %></td>

@@ -88,7 +88,7 @@ class BookingsController < ApplicationController
   private
 
   def booking_params
-    params.require(:booking).permit(:exp_booking_num, :imp_cntr_num, :exp_cntr_num, :off_action, :on_action, :slot_id).merge(user_id: current_user.id)
+    params.require(:booking).permit(:on_imp_laden_pick, :on_exp_booking_num, :off_exp_laden_in, :off_action, :off_imp_empty_return, :on_action, :slot_id).merge(user_id: current_user.id)
   end
 
   def update_params

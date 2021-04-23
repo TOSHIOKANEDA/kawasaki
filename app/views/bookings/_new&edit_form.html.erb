@@ -1,19 +1,24 @@
 <div class="field">
   <div class="field_new">
   <span>卸し時</span>
-    <%= f.select :off_action, options_for_select(Booking.off_actions.keys), { prompt: "卸し時の種別を選択してください" }, required: true, class: "new_box" %>
-    <%= f.text_field :imp_cntr_num, value: @imp_val, class: "new_box"%>
+    <%= f.select :off_action, options_for_select(Booking.off_actions.keys), { prompt: "卸し時の種別を選択してください" }, required: true, class: "new_box", id: "discharging_select"  %>
+    <div id="discharging_box_1">
+      <%= f.text_field :off_exp_laden_in, class: "new_box", id: "exp_laden_box", placeholder: "卸す輸出実入りコンテナ" %>
+    </div>
+    <div id="discharging_box_2">
+      <%= f.text_field :off_imp_empty_return, class: "new_box", id: "imp_return_box", placeholder: "卸す空コンテナ"%>
+    </div>
   </div>
 
   <div class="field_new">
   <span>積み時</span>
     <%= f.select :on_action, options_for_select(Booking.on_actions.keys), { prompt: "積み時の種別を選択してください" }, required: true, class: "new_box", id: "loading_select" %>
     <div id="loading_box_1">
-      <%= f.text_field :exp_booking_num, class: "new_box", id: "bkg_box"%>
+      <%= f.text_field :on_exp_booking_num, class: "new_box", id: "exp_bkg_box", placeholder: "積む空バンのbooking番号"%>
     </div>
 
     <div id="loading_box_2">
-      <%= f.text_field :exp_cntr_num, class: "new_box", id: "cntr_box"%>
+      <%= f.text_field :on_imp_laden_pick, class: "new_box", id: "exp_cntr_box", placeholder: "積む輸入実入りコンテナ"%>
     </div>
   </div>  
 

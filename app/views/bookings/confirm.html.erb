@@ -4,9 +4,10 @@
   <div class="field_new">
   <p>おろしどり予約内容をご確認ください。</p>
     <%= form_with model: @booking, local: true, url: {action: 'create'}  do |f| %>
-      <div class="field_show"><%= f.hidden_field :imp_cntr_num %>卸し時のコンテナ番号:<%= @booking.imp_cntr_num %></div>
-      <div class="field_show"><%= f.hidden_field :exp_booking_num %>積み時のBooking番号：<%= @booking.exp_booking_num %></div>
-      <div class="field_show"><%= f.hidden_field :exp_cntr_num %>積み時のコンテナ番号：<%= @booking.exp_cntr_num %></div>
+      <div class="field_show"><%= f.hidden_field :off_exp_laden_in %>卸し時の実入り搬入コンテナ番号:<%= @booking.off_exp_laden_in %></div>
+      <div class="field_show"><%= f.hidden_field :off_imp_empty_return %>卸し時の空バン返却コンテナ番号:<%= @booking.off_imp_empty_return %></div>
+      <div class="field_show"><%= f.hidden_field :on_exp_booking_num %>積み時のBooking番号：<%= @booking.on_exp_booking_num %></div>
+      <div class="field_show"><%= f.hidden_field :on_imp_laden_pick %>積み時の輸入実入りコンテナ番号：<%= @booking.on_imp_laden_pick%></div>
       <div class="field_show"><%= f.hidden_field :off_action %>卸す時：<%= @booking.off_action %></div>
       <div class="field_show"><%= f.hidden_field :on_action %>積む時：<%= @booking.on_action %></div>
       <div class="field_show">予約時間：<%= @booking.slot.date.strftime("%Y年%m月%d日") %>の<%= @booking.slot.start_time %>から<%= @booking.slot.end_time %></div>
