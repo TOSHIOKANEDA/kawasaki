@@ -4,8 +4,8 @@
   <span>日にち</span>
   <%= f.date_field :date, required: true, min: Date.today, class: "date_box"  %>
   <span>時間</span>
-  <%= f.select :start_time, options_for_select(select_time), {required: true}, class: "select_box" %>~
-  <%= f.select :end_time, options_for_select(select_time), {required: true}, class: "select_box" %>
+  <%= f.select :start_time, options_for_select(Slot.start_times.keys), {required: true}, class: "select_box" %>~
+  <%= f.select :end_time, options_for_select(Slot.start_times.keys), {required: true}, class: "select_box" %>
   <span>利用者権限</span>
   <%= f.select :access_level, options_for_select_from_enum(Slot, :access_level), {required: true}, class: "select_box" %>
   <span>表示ON/OFF</span>
