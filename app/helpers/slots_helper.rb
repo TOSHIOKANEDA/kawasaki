@@ -15,4 +15,5 @@ module SlotsHelper
     end
   end
 
+
 end

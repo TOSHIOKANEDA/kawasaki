@@ -28,8 +28,8 @@
 | access_level         | integer     | defalut: 0         |
 | power_switch         | integer     | default: 0         |
 | full_status          | integer     | default: 0         |
-| start_time           | string      | null:false         |
-| end_time             | string      | null:false         |
+| start_time           | integer     | null:false         |
+| end_time             | integer     | null:false         |
 | created_at           | datetime    | null:false         |
 | updated_at           | datetime    | null:false         |
 
@@ -89,10 +89,11 @@
   <dd>power_off:1</dd>
 </dl>
 <dl>
-  <dt>time_list:</dt>
-  <dd>"08:00":0</dd>
+  <dt>start_time:, end_time:</dt>
+  <dd>"08:00":0,</dd>
   <dd>"16:30":17</dd>
 </dl>
+
 * access_levelは分岐で使用できるようstringはやめて英文字で指定した。
 * power_switchはpower_switch.power_offでpresent?できるのでhelperとgemを入れて英文で管理。
 * 日本語化はja.yml
@@ -185,8 +186,12 @@
 - Validationではないが、phoneを半角数字としハイフンは消すように、user.rbに記載
 
 ### Slot
-- 特になし
-- 時間についてを11:00から08:00までみたいな設定を防ぐvalidationは入れるべき
+- 時間についてを11:00から08:00までみたいな設定を防ぐため、enumのintegerで管理しvalidation下記の通り追加
+```
+  def start_ealier_than_end
+    errors.add(:start_time, "は終了時間よりも早く設定してください")if end_time <= start_time
+  end
+```
 
 ### Booking
 - コンテナ番号についての制限を入れている

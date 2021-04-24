@@ -24,7 +24,9 @@ class SlotsController < ApplicationController
       redirect_to new_slot_path
     else
       redirect_to new_slot_path
-      flash[:alert] = "予約枠の作成に失敗しました"
+      @slot.errors.full_messages.each_with_index do |msg, index|
+        flash[:alert] = msg
+      end
     end
   end
 
@@ -35,7 +37,9 @@ class SlotsController < ApplicationController
       flash[:notice] = "予約枠の内容を変更しました"
     else
       redirect_to new_slot_path
-      flash[:alert] = "予約枠の内容変更に失敗しました"
+      @slot.errors.full_messages.each_with_index do |msg, index|
+        flash[:alert] = msg
+      end
     end
   end
 

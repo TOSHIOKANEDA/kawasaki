@@ -10,6 +10,9 @@ ja:
         dr_access: ラウンド権限
   activerecord:
     attributes:
+      slot:
+        start_time: 開始時間
+        end_time: 終了時間
       booking:
         on_imp_laden_pick: 輸入コンテナ
         off_imp_empty_return: 返却となるコンテナ
