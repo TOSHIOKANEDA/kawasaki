@@ -88,11 +88,7 @@
   <dd>power_on:0,</dd>
   <dd>power_off:1</dd>
 </dl>
-<dl>
-  <dt>time_list:</dt>
-  <dd>"08:00":0</dd>
-  <dd>"16:30":17</dd>
-</dl>
+
 * access_levelは分岐で使用できるようstringはやめて英文字で指定した。
 * power_switchはpower_switch.power_offでpresent?できるのでhelperとgemを入れて英文で管理。
 * 日本語化はja.yml
